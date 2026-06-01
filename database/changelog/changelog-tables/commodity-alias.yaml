@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-commodity-alias
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            CREATE TABLE commodity_alias (
+                alias_id                 SERIAL PRIMARY KEY,
+                source                   VARCHAR(50) NOT NULL,
+                alias_mineral_lease_type VARCHAR(255),
+                alias_commodity          VARCHAR(255),
+                alias_product            VARCHAR(255),
+                commodity_id             INTEGER NOT NULL REFERENCES commodity(commodity_id),
+                notes                    TEXT,
+                creation_date            TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT transaction_timestamp(),
+                last_update_date         TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT transaction_timestamp(),
+                CONSTRAINT commodity_alias_source_check CHECK (source IN (
+                    'revenue_monthly',
+                    'production_monthly',
+                    'production_calendar_year',
+                    'production_fiscal_year',
+                    'disbursement_monthly'
+                ))
+            );
+
+            CREATE UNIQUE INDEX commodity_alias_unique_key
+                ON commodity_alias (
+                    source,
+                    COALESCE(alias_mineral_lease_type, ''),
+                    COALESCE(alias_commodity, ''),
+                    COALESCE(alias_product, '')
+                );
+
+            CREATE INDEX idx_commodity_alias_commodity_id
+                ON commodity_alias (commodity_id);

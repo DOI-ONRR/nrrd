@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: commodity-alias-cy-renames
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          splitStatements: false
+          sql: |
+            -- Aliases for raw CSV product strings that the now-retired CY
+            -- transform_product trigger used to rename before the loader's join.
+            -- commodity_id is looked up per environment by the post-rename
+            -- target product (mineral_lease_type=''), since commodity_id values
+            -- differ between dev and prod. A missing target raises an exception
+            -- so an environment skew fails loudly instead of silently dropping
+            -- CY rows at load time.
+            --
+            -- The 'Geothermal - Direct Use, Millions of Gallons (cgal)' rename
+            -- is intentionally omitted: the old trigger renamed it to a
+            -- non-existent target string, so CY rows with that product
+            -- silently dropped under the prior loader. Preserving that
+            -- behavior here.
+            DO $$
+            DECLARE
+                r          RECORD;
+                v_cid      INTEGER;
+            BEGIN
+                FOR r IN
+                    SELECT *
+                    FROM (VALUES
+                        ('production_calendar_year', 'Carbon Dioxide',                                          'Carbon dioxide (ton)',                                       'CY trigger rename: bare carbon dioxide w/o unit'),
+                        ('production_calendar_year', 'Sand/Gravel-Cubic Yards (cyd)',                           'Sand/gravel (cubic yards)',                                  'CY trigger rename: only CASE branch firing in current CY data'),
+                        ('production_calendar_year', 'Geothermal - Direct Utilization, Hundreds of Gallons',    'Geothermal - direct use (hundreds of gallons)',              'CY trigger rename: historical name'),
+                        ('production_calendar_year', 'Geothermal - Direct Use, Millions of Gallons',            'Geothermal - direct use (millions of gallons)',              'CY trigger rename: comma-style -> paren-style'),
+                        ('production_calendar_year', 'Geothermal - Direct Utilization, Millions of BTUs',       'Geothermal - direct use (millions of btus)',                 'CY trigger rename: historical name'),
+                        ('production_calendar_year', 'Geothermal - Electrical Generation, Kilowatt Hours',      'Geothermal - electrical generation (kilowatt hours)',        'CY trigger rename: comma-style -> paren-style'),
+                        ('production_calendar_year', 'Geothermal - Electrical Generation, Other',               'Geothermal - electrical generation (other)',                 'CY trigger rename: comma-style -> paren-style'),
+                        ('production_calendar_year', 'Geothermal - Electrical Generation, Thousands of Pounds', 'Geothermal - electrical generation (thousands of pounds)',   'CY trigger rename: comma-style -> paren-style'),
+                        ('production_calendar_year', 'Geothermal - sulfur',                                     'Geothermal - sulfur (tons)',                                 'CY trigger rename: missing unit suffix')
+                    ) AS v(source, alias_product, target_product, notes)
+                LOOP
+                    SELECT commodity_id
+                      INTO v_cid
+                      FROM commodity
+                     WHERE mineral_lease_type = ''
+                       AND product = r.target_product;
+
+                    IF v_cid IS NULL THEN
+                        RAISE EXCEPTION
+                            'commodity-alias-cy-renames: no commodity row for (mineral_lease_type='''', product=%); cannot resolve alias_product=%',
+                            r.target_product, r.alias_product;
+                    END IF;
+
+                    INSERT INTO commodity_alias (source, alias_product, commodity_id, notes)
+                    VALUES (r.source, r.alias_product, v_cid, r.notes)
+                    ON CONFLICT DO NOTHING;
+                END LOOP;
+            END $$;
