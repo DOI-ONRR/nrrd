@@ -9,7 +9,7 @@ databaseChangeLog:
             TRUNCATE TABLE monthly_revenue_elt
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/monthly_revenue.csv'
+          file: '../static/csv/revenue/May 2026 Revenue for Portal.csv'
           quotchar: '""'
           columns:
           - column:
