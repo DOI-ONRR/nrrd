@@ -53,12 +53,19 @@ jobs:
           cf login -u ${{ secrets.CF_USERNAME }} -p ${{ secrets.CF_PASSWORD }} -a api.fr.cloud.gov -o doi-onrr -s "$CF_SPACE"
 
       - name: Backup database
-        working-directory: ${{ github.workspace }}
-        run: |
-          cg-manage-rds export -o "-F p --no-owner --no-acl" -f backup.sql "$DB_SERVICE" 2>&1 | cat
-
-      - name: Verify backup file
-        run: ls -lh backup.sql
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 30
+          max_attempts: 3
+          retry_wait_seconds: 30
+          shell: bash
+          command: |
+            set -eo pipefail
+            cd "${{ github.workspace }}"
+            rm -f backup.sql
+            cg-manage-rds export -o "-F p --no-owner --no-acl" -f backup.sql "$DB_SERVICE" 2>&1
+            test -s backup.sql
+            ls -lh backup.sql
 
       - name: Compress backup
         run: |
