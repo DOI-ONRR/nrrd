@@ -1,13 +1,21 @@
 CREATE OR REPLACE PROCEDURE load_production_calendar_year()
 AS $$
 DECLARE
+    -- The CSV carries many rows per (location, period, commodity) -- e.g. one
+    -- per offshore lease/block flattened to the offshore-region grain -- so the
+    -- volume is SUMmed per key. (Previously volume and product were in the
+    -- GROUP BY, producing one group per distinct volume; since the production
+    -- PK is (location_id, period_id, commodity_id), all but one collided on
+    -- INSERT ... ON CONFLICT DO NOTHING and were silently dropped, undercounting
+    -- offshore Gas/Oil by tens of billions.) unit/unit_abbr are derived from a
+    -- single MAX() of the product's parenthetical so they stay consistent.
     cy_production CURSOR FOR
     SELECT location_id,
         period_id,
         a.commodity_id,
-        TO_NUMBER(volume, 'L999G999G999G999D99') volume,
-        COALESCE(SUBSTR(SPLIT_PART(SPLIT_PART(e.product, ' (', 2), ')', 1), 1, 20), '') unit,
-        COALESCE(SUBSTR(SPLIT_PART(SPLIT_PART(e.product, ' (', 2), ')', 1), 1, 5), '') unit_abbr,
+        SUM(TO_NUMBER(volume, 'L999G999G999G999D99')) volume,
+        SUBSTR(COALESCE(MAX(SPLIT_PART(SPLIT_PART(e.product, ' (', 2), ')', 1)), ''), 1, 20) unit,
+        SUBSTR(COALESCE(MAX(SPLIT_PART(SPLIT_PART(e.product, ' (', 2), ')', 1)), ''), 1, 5) unit_abbr,
         COUNT(*) duplicate_no
     FROM calendar_year_production_elt e,
         location l,
@@ -25,9 +33,7 @@ DECLARE
         AND p.period_date = TO_DATE(concat('01', '/01/', e.calendar_year), 'MM/DD/YYYY')
     GROUP BY location_id,
         period_id,
-        a.commodity_id,
-        volume,
-        e.product;
+        a.commodity_id;
 
     v_from_date period.period_date%TYPE;
 BEGIN
