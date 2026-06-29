@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: commodity-alias-cy-utilization-paren
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          splitStatements: false
+          sql: |
+            -- The CY CSV carries a hybrid product spelling,
+            -- "Geothermal - direct utilization (<units>)", that combines the
+            -- historical "utilization" wording with the parenthetical unit
+            -- style. Neither existing alias matches it: commodity_alias has
+            -- "Geothermal - direct use (<units>)" (paren style, "use") and
+            -- "Geothermal - Direct Utilization, <Units>" (comma style,
+            -- "utilization"), but nothing with "utilization" AND parens. So
+            -- the inner join in load_production_calendar_year silently dropped
+            -- these rows (32 hundreds-of-gallons + 23 millions-of-btus = 55).
+            --
+            -- commodity_id is resolved per environment from the post-rename
+            -- target product (mineral_lease_type=''), matching the approach in
+            -- commodity-alias-cy-renames, so an environment skew raises an
+            -- exception instead of silently dropping CY rows again.
+            DO $$
+            DECLARE
+                r     RECORD;
+                v_cid INTEGER;
+            BEGIN
+                FOR r IN
+                    SELECT *
+                    FROM (VALUES
+                        ('production_calendar_year', 'Geothermal - direct utilization (hundreds of gallons)', 'Geothermal - direct use (hundreds of gallons)', 'CY CSV: utilization + paren-unit hybrid spelling'),
+                        ('production_calendar_year', 'Geothermal - direct utilization (millions of btus)',     'Geothermal - direct use (millions of btus)',     'CY CSV: utilization + paren-unit hybrid spelling')
+                    ) AS v(source, alias_product, target_product, notes)
+                LOOP
+                    SELECT commodity_id
+                      INTO v_cid
+                      FROM commodity
+                     WHERE mineral_lease_type = ''
+                       AND product = r.target_product;
+
+                    IF v_cid IS NULL THEN
+                        RAISE EXCEPTION
+                            'commodity-alias-cy-utilization: no commodity row for (mineral_lease_type='''', product=%); cannot resolve alias_product=%',
+                            r.target_product, r.alias_product;
+                    END IF;
+
+                    INSERT INTO commodity_alias (source, alias_product, commodity_id, notes)
+                    VALUES (r.source, r.alias_product, v_cid, r.notes)
+                    ON CONFLICT DO NOTHING;
+                END LOOP;
+            END $$;
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            -- Reload CY production now that the aliases exist so the previously
+            -- dropped rows are backfilled, then refresh the dependent mviews.
+            -- Reads the already-populated calendar_year_production_elt; the
+            -- loader is idempotent (delete_production + re-insert).
+            CALL load_production_calendar_year();
+            REFRESH MATERIALIZED VIEW _mview_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_commodity_qtp;
+            REFRESH MATERIALIZED VIEW _mview_location_qtp;
+            REFRESH MATERIALIZED VIEW query_tool_production;
