@@ -39,6 +39,7 @@ import {
   DATA_TYPE,
   DISBURSEMENT,
   PERIOD,
+  PERIOD_FISCAL_YEAR,
   PRODUCTION,
   REVENUE
 } from '../../../constants'
@@ -113,6 +114,7 @@ const ExploreDataToolbar = props => {
 
 ProductionCommodityOptions: production_commodity_options(where: {product: {_neq: ""}}, order_by: {commodity_order: asc}) {
     product
+    period
   }
        
   # replacing in favor of commodity view which has the commodity_order field to order by
@@ -128,13 +130,20 @@ ProductionCommodityOptions: production_commodity_options(where: {product: {_neq:
     cardMenuItems
   } = props
 
-  const productionCommodityOptions = data.onrr.ProductionCommodityOptions.map(item => item.product)
   // const revenueCommodityOptions = data.onrr.revenue_commodity.map(item => item.commodity)
   const revenueCommodityOptions = data.onrr.RevenueCommodityOptions.map(item => item.commodity)
 
   const classes = useStyles()
   const { state: filterState } = useContext(DataFilterContext)
   const { state: pageState } = useContext(ExploreDataContext)
+
+  // Limit the production "commodity" (really product) options to the period
+  // selected in the Period control. useStaticQuery runs at build time and can't
+  // take the period as a variable, so the view returns rows for both periods
+  // (each tagged with its period) and we filter to the selected one at runtime.
+  const productionCommodityOptions = data.onrr.ProductionCommodityOptions
+    .filter(item => item.period === (filterState[PERIOD] || PERIOD_FISCAL_YEAR))
+    .map(item => item.product)
 
   const [exploreDataTabOpen, setExploreDataTabOpen] = useState(true)
   const [locationTabOpen, setLocationTabOpen] = useState(false)

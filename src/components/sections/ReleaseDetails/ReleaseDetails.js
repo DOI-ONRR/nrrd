@@ -37,14 +37,14 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          June 15, 2026 changes:
+          June 30, 2026 changes:
           </Typography>
         <List className={classes.changeList}>
           <ListItem>
             <ListItemText
               primary={
                 <>
-                  Added <Link href="/downloads/disbursements-by-month/">monthly disbursements data</Link>
+                  Added <Link href="/downloads/production/">calendar year production data</Link>
                 </>
               }
             />
