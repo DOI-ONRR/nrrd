@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-26-June
+      id: revenue-26-July
       author: Lindsay Goldstein
       changes: 
       - sql:
