@@ -1,390 +1,376 @@
-Month,Calendar Year,Fund Type,Treasury Fund,Land Category,Disbursement Type,State,County,Commodity,Category,Disbursement
-June,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,"13,287.00"
-June,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Gilsonite,Rents & Bonuses,119.5
-June,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,"448,262.93"
-June,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Phosphate,Rents & Bonuses,"3,672.75"
-June,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Sodium,Rents & Bonuses,"3,381.00"
-June,2026,Bureau of Land Management,,Onshore,,,,Gas,Royalties,"8,840.06"
-June,2026,Bureau of Land Management,,Onshore,,,,Oil,Royalties,"85,119.14"
-June,2026,Bureau of Land Management,,Onshore,,,,Oil & Gas,Other Distributions,"1,875.58"
-June,2026,Bureau of Land Management,,Onshore,,,,Oil & Gas,Rents & Bonuses,160
-June,2026,Bureau of Land Management,,Onshore,,,,Oil & Gas,Royalties,466.87
-June,2026,Bureau of Ocean Energy Management,,Offshore,,,,Oil & Gas,Rents & Bonuses,"5,914,595.84"
-June,2026,Bureau of Safety & Environmental Enforcement,,Offshore,,,,,Other Distributions,"2,069,174.44"
-June,2026,Bureau of Safety & Environmental Enforcement,,Offshore,,,,Oil & Gas,Rents & Bonuses,"2,534,857.97"
-June,2026,Fish & Wildlife,,Onshore,,,,Gas,Royalties,"10,034.98"
-June,2026,Fish & Wildlife,,Onshore,,,,Oil,Royalties,"126,115.99"
-June,2026,Fish & Wildlife,,Onshore,,,,Oil & Gas,Other Distributions,837.63
-June,2026,Fish & Wildlife,,Onshore,,,,Oil & Gas,Royalties,-9.91
-June,2026,Forest Service,,Onshore,,,,Coal,Other Distributions,0.24
-June,2026,Forest Service,,Onshore,,,,Coal,Royalties,"40,961.92"
-June,2026,Forest Service,,Onshore,,,,Copper,Royalties,"253,169.35"
-June,2026,Forest Service,,Onshore,,,,Gas,Royalties,"7,880,173.17"
-June,2026,Forest Service,,Onshore,,,,Hardrock,Other Distributions,"-2,554.40"
-June,2026,Forest Service,,Onshore,,,,Hardrock,Rents & Bonuses,-206.25
-June,2026,Forest Service,,Onshore,,,,Lead/Zinc,Royalties,"358,284.32"
-June,2026,Forest Service,,Onshore,,,,Oil,Royalties,"17,395,190.93"
-June,2026,Forest Service,,Onshore,,,,Oil & Gas,Other Distributions,"1,079,375.94"
-June,2026,Forest Service,,Onshore,,,,Oil & Gas,Rents & Bonuses,"1,369,444.25"
-June,2026,Forest Service,,Onshore,,,,Oil & Gas,Royalties,"97,590.55"
-June,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Gas,Royalties,"1,684,043.81"
-June,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil,Royalties,"-2,308,347.11"
-June,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"158,101.01"
-June,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Royalties,"466,202.29"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,,Other Distributions,"-11,100,930.65"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Coal,Other Distributions,"15,755.51"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Coal,Rents & Bonuses,"14,745.92"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Coal,Royalties,"11,363.37"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Gas,Other Distributions,-98.29
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Gas,Royalties,"10,401,177.40"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Oil,Other Distributions,"-5,603.41"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Oil,Royalties,"73,025,990.59"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Other Distributions,"2,170,603.82"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Rents & Bonuses,"111,569.57"
-June,2026,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Royalties,"27,285.51"
-June,2026,Reclamation Fund,,Onshore,,,,Coal,Other Distributions,"117,498.02"
-June,2026,Reclamation Fund,,Onshore,,,,Coal,Royalties,"6,787,685.83"
-June,2026,Reclamation Fund,,Onshore,,,,Gas,Other Distributions,106
-June,2026,Reclamation Fund,,Onshore,,,,Gas,Royalties,"48,521,406.47"
-June,2026,Reclamation Fund,,Onshore,,,,Gilsonite,Other Distributions,573.6
-June,2026,Reclamation Fund,,Onshore,,,,Gilsonite,Royalties,"54,915.85"
-June,2026,Reclamation Fund,,Onshore,,,,Oil,Other Distributions,"4,507.35"
-June,2026,Reclamation Fund,,Onshore,,,,Oil,Royalties,"269,179,307.92"
-June,2026,Reclamation Fund,,Onshore,,,,Oil & Gas,Other Distributions,"28,898,216.73"
-June,2026,Reclamation Fund,,Onshore,,,,Oil & Gas,Rents & Bonuses,"131,395,436.40"
-June,2026,Reclamation Fund,,Onshore,,,,Oil & Gas,Royalties,"6,943,644.73"
-June,2026,Reclamation Fund,,Onshore,,,,Phosphate,Other Distributions,"10,086.80"
-June,2026,Reclamation Fund,,Onshore,,,,Phosphate,Royalties,"235,664.43"
-June,2026,Reclamation Fund,,Onshore,,,,Potassium,Other Distributions,"-5,394.34"
-June,2026,Reclamation Fund,,Onshore,,,,Potassium,Royalties,"332,051.01"
-June,2026,Reclamation Fund,,Onshore,,,,Sodium,Other Distributions,-176.15
-June,2026,Reclamation Fund,,Onshore,,,,Sodium,Royalties,"634,533.76"
-June,2026,State,,Offshore,8(g),AK,,Oil,Royalties,"84,904.24"
-June,2026,State,,Offshore,8(g),AL,,Gas,Royalties,"142,732.57"
-June,2026,State,,Offshore,8(g),AL,,Oil,Royalties,578.82
-June,2026,State,,Offshore,8(g),AL,,Oil & Gas,Other Distributions,"-8,975.61"
-June,2026,State,,Offshore,8(g),AL,,Oil & Gas,Royalties,89.28
-June,2026,State,,Offshore,8(g),CA,,Gas,Royalties,41.4
-June,2026,State,,Offshore,8(g),CA,,Oil,Royalties,"-3,287.32"
-June,2026,State,,Offshore,8(g),CA,,Oil & Gas,Royalties,"3,245.92"
-June,2026,State,,Offshore,8(g),LA,,Gas,Royalties,"34,094.95"
-June,2026,State,,Offshore,8(g),LA,,Oil,Other Distributions,-21.76
-June,2026,State,,Offshore,8(g),LA,,Oil,Royalties,"161,515.69"
-June,2026,State,,Offshore,8(g),LA,,Oil & Gas,Other Distributions,"19,249.60"
-June,2026,State,,Offshore,8(g),MS,,Gas,Royalties,"3,751.93"
-June,2026,State,,Offshore,8(g),MS,,Oil & Gas,Other Distributions,-665.67
-June,2026,State,,Offshore,8(g),TX,,Gas,Royalties,"2,380.73"
-June,2026,State,,Offshore,8(g),TX,,Oil & Gas,Other Distributions,737.71
-June,2026,State,,Onshore,Geothermal,CA,Imperial County,,Royalties,-495.37
-June,2026,State,,Onshore,Geothermal,CA,Imperial County,Geothermal,Royalties,495.37
-June,2026,State,,Onshore,Geothermal,CA,Inyo County,,Sequestration,-91.18
-June,2026,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Other Distributions,"1,215.50"
-June,2026,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Royalties,384.13
-June,2026,State,,Onshore,Geothermal,CA,Lake County,,Sequestration,"-3,651.94"
-June,2026,State,,Onshore,Geothermal,CA,Lake County,Geothermal,Royalties,"64,069.19"
-June,2026,State,,Onshore,Geothermal,CA,Lassen County,,Sequestration,-156.24
-June,2026,State,,Onshore,Geothermal,CA,Lassen County,Geothermal,Other Distributions,100.69
-June,2026,State,,Onshore,Geothermal,CA,Lassen County,Geothermal,Royalties,"2,640.29"
-June,2026,State,,Onshore,Geothermal,CA,Sonoma County,,Sequestration,"-5,087.52"
-June,2026,State,,Onshore,Geothermal,CA,Sonoma County,Geothermal,Royalties,"89,254.81"
-June,2026,State,,Onshore,Geothermal,NV,Elko County,,Sequestration,-264.52
-June,2026,State,,Onshore,Geothermal,NV,Elko County,Geothermal,Rents & Bonuses,"4,640.75"
-June,2026,State,,Onshore,Geothermal,NV,Esmeralda County,,Sequestration,-18.27
-June,2026,State,,Onshore,Geothermal,NV,Esmeralda County,Geothermal,Other Distributions,320.53
-June,2026,State,,Onshore,Geothermal,NV,Eureka County,,Sequestration,-25.45
-June,2026,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Other Distributions,0.5
-June,2026,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Rents & Bonuses,800
-June,2026,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Royalties,-354.03
-June,2026,State,,Onshore,Geothermal,NV,Humboldt County,,Sequestration,"-6,076.94"
-June,2026,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Other Distributions,49.59
-June,2026,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Rents & Bonuses,"102,758.49"
-June,2026,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Royalties,"3,804.97"
-June,2026,State,,Onshore,Geothermal,NV,Lander County,,Sequestration,"-3,213.42"
-June,2026,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Other Distributions,112
-June,2026,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Rents & Bonuses,-42.5
-June,2026,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Royalties,"56,306.30"
-June,2026,State,,Onshore,Geothermal,NV,Lyon County,,Sequestration,-20.33
-June,2026,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Rents & Bonuses,-126.91
-June,2026,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Royalties,483.52
-June,2026,State,,Onshore,Geothermal,NV,Mineral County,,Sequestration,-707.71
-June,2026,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Rents & Bonuses,-55.24
-June,2026,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Royalties,"12,471.16"
-June,2026,State,,Onshore,Geothermal,NV,Pershing County,,Sequestration,-66.84
-June,2026,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Rents & Bonuses,813.75
-June,2026,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Royalties,358.96
-June,2026,State,,Onshore,Geothermal,NV,Washoe County,,Sequestration,-318.01
-June,2026,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Other Distributions,350.14
-June,2026,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Royalties,"5,228.91"
-June,2026,State,,Onshore,Geothermal,NV,White Pine County,,Sequestration,-326.05
-June,2026,State,,Onshore,Geothermal,NV,White Pine County,Geothermal,Rents & Bonuses,"5,720.25"
-June,2026,State,,Onshore,Geothermal,UT,Beaver County,,Sequestration,"-1,044.90"
-June,2026,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Other Distributions,637.79
-June,2026,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Rents & Bonuses,"1,687.56"
-June,2026,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Royalties,"16,006.20"
-June,2026,State,,Onshore,Geothermal,UT,Millard County,,Sequestration,-214.27
-June,2026,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Rents & Bonuses,"3,622.44"
-June,2026,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Royalties,136.63
-June,2026,State,,Onshore,State,AK,,,Royalties,"-19,942.26"
-June,2026,State,,Onshore,State,AK,,,Sequestration,"-134,253.57"
-June,2026,State,,Onshore,State,AK,,Gas,Royalties,"758,658.08"
-June,2026,State,,Onshore,State,AK,,Oil,Other Distributions,"10,398.33"
-June,2026,State,,Onshore,State,AK,,Oil,Royalties,"1,577,079.83"
-June,2026,State,,Onshore,State,AK,,Oil & Gas,Other Distributions,"29,131.82"
-June,2026,State,,Onshore,State,AK,,Oil & Gas,Royalties,0.02
-June,2026,State,,Onshore,State,AL,,,Royalties,"-1,260.24"
-June,2026,State,,Onshore,State,AL,,,Sequestration,"-3,635.31"
-June,2026,State,,Onshore,State,AL,,Coal,Royalties,"60,588.18"
-June,2026,State,,Onshore,State,AL,,Gas,Royalties,"2,611.49"
-June,2026,State,,Onshore,State,AL,,Oil,Royalties,"1,695.12"
-June,2026,State,,Onshore,State,AL,,Oil & Gas,Other Distributions,49.42
-June,2026,State,,Onshore,State,AL,,Oil & Gas,Royalties,93.45
-June,2026,State,,Onshore,State,AR,,,Other Distributions,0.27
-June,2026,State,,Onshore,State,AR,,,Royalties,-560.17
-June,2026,State,,Onshore,State,AR,,,Sequestration,"-3,011.63"
-June,2026,State,,Onshore,State,AR,,Gas,Royalties,"52,952.99"
-June,2026,State,,Onshore,State,AR,,Hardrock,Rents & Bonuses,16.03
-June,2026,State,,Onshore,State,AR,,Oil,Royalties,3.34
-June,2026,State,,Onshore,State,AR,,Oil & Gas,Other Distributions,466.73
-June,2026,State,,Onshore,State,AR,,Oil & Gas,Rents & Bonuses,-43.75
-June,2026,State,,Onshore,State,CA,,,Other Distributions,"25,794.89"
-June,2026,State,,Onshore,State,CA,,,Royalties,"-72,079.90"
-June,2026,State,,Onshore,State,CA,,,Sequestration,"-202,791.24"
-June,2026,State,,Onshore,State,CA,,Gas,Royalties,"22,792.84"
-June,2026,State,,Onshore,State,CA,,Geothermal,Other Distributions,"2,632.39"
-June,2026,State,,Onshore,State,CA,,Geothermal,Royalties,"242,244.29"
-June,2026,State,,Onshore,State,CA,,Hardrock,Other Distributions,30.69
-June,2026,State,,Onshore,State,CA,,Oil,Royalties,"3,323,924.43"
-June,2026,State,,Onshore,State,CA,,Oil & Gas,Other Distributions,"7,065.23"
-June,2026,State,,Onshore,State,CA,,Oil & Gas,Rents & Bonuses,"2,000.00"
-June,2026,State,,Onshore,State,CA,,Oil & Gas,Royalties,"3,329.70"
-June,2026,State,,Onshore,State,CA,,Sodium,Other Distributions,-236.3
-June,2026,State,,Onshore,State,CA,,Sodium,Royalties,242.79
-June,2026,State,,Onshore,State,CO,,,Other Distributions,194.86
-June,2026,State,,Onshore,State,CO,,,Royalties,"-147,728.38"
-June,2026,State,,Onshore,State,CO,,,Sequestration,"-412,649.72"
-June,2026,State,,Onshore,State,CO,,Coal,Other Distributions,"1,860.81"
-June,2026,State,,Onshore,State,CO,,Coal,Rents & Bonuses,"3,694.50"
-June,2026,State,,Onshore,State,CO,,Coal,Royalties,"1,196,178.43"
-June,2026,State,,Onshore,State,CO,,Gas,Royalties,"2,294,524.58"
-June,2026,State,,Onshore,State,CO,,Oil,Royalties,"1,961,041.52"
-June,2026,State,,Onshore,State,CO,,Oil & Gas,Other Distributions,"-274,744.13"
-June,2026,State,,Onshore,State,CO,,Oil & Gas,Rents & Bonuses,"680,070.25"
-June,2026,State,,Onshore,State,CO,,Oil & Gas,Royalties,"1,466,032.03"
-June,2026,State,,Onshore,State,CO,,Sodium,Rents & Bonuses,58.5
-June,2026,State,,Onshore,State,CO,,Sodium,Royalties,"58,285.76"
-June,2026,State,,Onshore,State,FL,,,Royalties,-1.83
-June,2026,State,,Onshore,State,FL,,,Sequestration,-5.11
-June,2026,State,,Onshore,State,FL,,Phosphate,Other Distributions,61
-June,2026,State,,Onshore,State,FL,,Phosphate,Rents & Bonuses,30.5
-June,2026,State,,Onshore,State,ID,,,Royalties,"-6,161.89"
-June,2026,State,,Onshore,State,ID,,,Sequestration,"-17,210.16"
-June,2026,State,,Onshore,State,ID,,Phosphate,Other Distributions,"12,547.50"
-June,2026,State,,Onshore,State,ID,,Phosphate,Rents & Bonuses,966.5
-June,2026,State,,Onshore,State,ID,,Phosphate,Royalties,"294,580.54"
-June,2026,State,,Onshore,State,IL,,,Sequestration,-567.54
-June,2026,State,,Onshore,State,IL,,Oil,Royalties,"9,956.81"
-June,2026,State,,Onshore,State,KS,,,Royalties,-763.75
-June,2026,State,,Onshore,State,KS,,,Sequestration,"-2,133.15"
-June,2026,State,,Onshore,State,KS,,Gas,Royalties,"17,809.47"
-June,2026,State,,Onshore,State,KS,,Oil,Royalties,"18,259.18"
-June,2026,State,,Onshore,State,KS,,Oil & Gas,Other Distributions,"2,118.84"
-June,2026,State,,Onshore,State,KY,,,Sequestration,-207.6
-June,2026,State,,Onshore,State,KY,,Gas,Royalties,"1,132.50"
-June,2026,State,,Onshore,State,KY,,Hardrock,Other Distributions,0.12
-June,2026,State,,Onshore,State,KY,,Hardrock,Rents & Bonuses,-0.11
-June,2026,State,,Onshore,State,KY,,Oil,Royalties,505.75
-June,2026,State,,Onshore,State,KY,,Oil & Gas,Other Distributions,"2,003.96"
-June,2026,State,,Onshore,State,LA,,,Royalties,"-13,840.73"
-June,2026,State,,Onshore,State,LA,,,Sequestration,"-50,461.96"
-June,2026,State,,Onshore,State,LA,,Gas,Royalties,"760,579.32"
-June,2026,State,,Onshore,State,LA,,Oil,Royalties,"45,938.05"
-June,2026,State,,Onshore,State,LA,,Oil & Gas,Other Distributions,"-7,346.99"
-June,2026,State,,Onshore,State,LA,,Oil & Gas,Rents & Bonuses,"99,968.00"
-June,2026,State,,Onshore,State,MI,,,Royalties,-33.75
-June,2026,State,,Onshore,State,MI,,,Sequestration,-99.78
-June,2026,State,,Onshore,State,MI,,Gas,Royalties,180.23
-June,2026,State,,Onshore,State,MI,,Oil,Royalties,"1,283.99"
-June,2026,State,,Onshore,State,MI,,Oil & Gas,Other Distributions,320
-June,2026,State,,Onshore,State,MO,,,Sequestration,"-11,561.25"
-June,2026,State,,Onshore,State,MO,,Copper,Royalties,"84,389.71"
-June,2026,State,,Onshore,State,MO,,Hardrock,Other Distributions,-988.57
-June,2026,State,,Onshore,State,MO,,Lead/Zinc,Royalties,"119,427.89"
-June,2026,State,,Onshore,State,MS,,,Royalties,-113.68
-June,2026,State,,Onshore,State,MS,,,Sequestration,"-2,412.22"
-June,2026,State,,Onshore,State,MS,,Gas,Royalties,"1,179.55"
-June,2026,State,,Onshore,State,MS,,Oil,Royalties,"36,060.97"
-June,2026,State,,Onshore,State,MS,,Oil & Gas,Other Distributions,271.97
-June,2026,State,,Onshore,State,MS,,Oil & Gas,Rents & Bonuses,"4,472.00"
-June,2026,State,,Onshore,State,MS,,Oil & Gas,Royalties,448.83
-June,2026,State,,Onshore,State,MT,,,Other Distributions,0.84
-June,2026,State,,Onshore,State,MT,,,Royalties,"-29,255.12"
-June,2026,State,,Onshore,State,MT,,,Sequestration,"-81,709.60"
-June,2026,State,,Onshore,State,MT,,Coal,Other Distributions,205.44
-June,2026,State,,Onshore,State,MT,,Coal,Royalties,"667,234.58"
-June,2026,State,,Onshore,State,MT,,Gas,Royalties,"44,570.98"
-June,2026,State,,Onshore,State,MT,,Oil,Royalties,"714,200.06"
-June,2026,State,,Onshore,State,MT,,Oil & Gas,Other Distributions,"22,667.97"
-June,2026,State,,Onshore,State,MT,,Oil & Gas,Rents & Bonuses,"12,839.66"
-June,2026,State,,Onshore,State,MT,,Oil & Gas,Royalties,"1,037.23"
-June,2026,State,,Onshore,State,ND,,,Other Distributions,155.71
-June,2026,State,,Onshore,State,ND,,,Royalties,"-124,116.98"
-June,2026,State,,Onshore,State,ND,,,Sequestration,"-656,186.49"
-June,2026,State,,Onshore,State,ND,,Coal,Other Distributions,39.47
-June,2026,State,,Onshore,State,ND,,Coal,Rents & Bonuses,"8,001.00"
-June,2026,State,,Onshore,State,ND,,Coal,Royalties,"165,423.55"
-June,2026,State,,Onshore,State,ND,,Gas,Royalties,"615,532.71"
-June,2026,State,,Onshore,State,ND,,Oil,Royalties,"9,669,607.43"
-June,2026,State,,Onshore,State,ND,,Oil & Gas,Other Distributions,"1,156,775.47"
-June,2026,State,,Onshore,State,ND,,Oil & Gas,Rents & Bonuses,447
-June,2026,State,,Onshore,State,ND,,Oil & Gas,Royalties,"20,178.22"
-June,2026,State,,Onshore,State,NE,,,Royalties,-37.87
-June,2026,State,,Onshore,State,NE,,,Sequestration,-105.76
-June,2026,State,,Onshore,State,NE,,Oil,Royalties,"1,893.35"
-June,2026,State,,Onshore,State,NM,,,Other Distributions,"2,564,142.09"
-June,2026,State,,Onshore,State,NM,,,Royalties,"-10,851,936.07"
-June,2026,State,,Onshore,State,NM,,,Sequestration,"-30,455,613.55"
-June,2026,State,,Onshore,State,NM,,Coal,Other Distributions,"137,754.33"
-June,2026,State,,Onshore,State,NM,,Gas,Other Distributions,132.53
-June,2026,State,,Onshore,State,NM,,Gas,Royalties,"47,738,476.90"
-June,2026,State,,Onshore,State,NM,,Oil,Other Distributions,"5,642.58"
-June,2026,State,,Onshore,State,NM,,Oil,Royalties,"292,606,150.36"
-June,2026,State,,Onshore,State,NM,,Oil & Gas,Other Distributions,"33,620,066.57"
-June,2026,State,,Onshore,State,NM,,Oil & Gas,Rents & Bonuses,"163,133,003.82"
-June,2026,State,,Onshore,State,NM,,Oil & Gas,Royalties,"4,899,454.77"
-June,2026,State,,Onshore,State,NM,,Potassium,Other Distributions,779.56
-June,2026,State,,Onshore,State,NM,,Potassium,Royalties,"407,547.91"
-June,2026,State,,Onshore,State,NM,,Sodium,Royalties,"47,794.33"
-June,2026,State,,Onshore,State,NV,,,Other Distributions,3.03
-June,2026,State,,Onshore,State,NV,,,Royalties,"-14,352.69"
-June,2026,State,,Onshore,State,NV,,,Sequestration,"-40,087.24"
-June,2026,State,,Onshore,State,NV,,Geothermal,Other Distributions,"1,665.66"
-June,2026,State,,Onshore,State,NV,,Geothermal,Rents & Bonuses,"228,668.99"
-June,2026,State,,Onshore,State,NV,,Geothermal,Royalties,"286,408.43"
-June,2026,State,,Onshore,State,NV,,Oil,Royalties,"63,954.28"
-June,2026,State,,Onshore,State,NV,,Oil & Gas,Other Distributions,608.97
-June,2026,State,,Onshore,State,NV,,Oil & Gas,Rents & Bonuses,"130,330.00"
-June,2026,State,,Onshore,State,NV,,Phosphate,Rents & Bonuses,"2,675.75"
-June,2026,State,,Onshore,State,NV,,Sodium,Rents & Bonuses,"3,322.50"
-June,2026,State,,Onshore,State,OH,,,Sequestration,"-1,131.69"
-June,2026,State,,Onshore,State,OH,,Gas,Royalties,"10,821.00"
-June,2026,State,,Onshore,State,OH,,Oil,Royalties,"6,627.66"
-June,2026,State,,Onshore,State,OH,,Oil & Gas,Other Distributions,"2,288.11"
-June,2026,State,,Onshore,State,OH,,Oil & Gas,Rents & Bonuses,117.48
-June,2026,State,,Onshore,State,OK,,,Other Distributions,0.63
-June,2026,State,,Onshore,State,OK,,,Royalties,"-14,927.87"
-June,2026,State,,Onshore,State,OK,,,Sequestration,"-54,392.27"
-June,2026,State,,Onshore,State,OK,,Gas,Royalties,"281,452.16"
-June,2026,State,,Onshore,State,OK,,Hardrock,Rents & Bonuses,3.97
-June,2026,State,,Onshore,State,OK,,Oil,Royalties,"403,247.30"
-June,2026,State,,Onshore,State,OK,,Oil & Gas,Other Distributions,"174,206.24"
-June,2026,State,,Onshore,State,OK,,Oil & Gas,Rents & Bonuses,"110,242.00"
-June,2026,State,,Onshore,State,OK,,Oil & Gas,Royalties,25.81
-June,2026,State,,Onshore,State,PA,,Gas,Royalties,16.55
-June,2026,State,,Onshore,State,PA,,Oil,Royalties,-258.7
-June,2026,State,,Onshore,State,PA,,Oil & Gas,Other Distributions,242.15
-June,2026,State,,Onshore,State,SC,,,Sequestration,-0.8
-June,2026,State,,Onshore,State,SC,,Hardrock,Other Distributions,14.1
-June,2026,State,,Onshore,State,SD,,,Royalties,-658.11
-June,2026,State,,Onshore,State,SD,,,Sequestration,"-1,838.11"
-June,2026,State,,Onshore,State,SD,,Gas,Royalties,389.41
-June,2026,State,,Onshore,State,SD,,Oil,Royalties,"32,484.37"
-June,2026,State,,Onshore,State,SD,,Oil & Gas,Royalties,31.88
-June,2026,State,,Onshore,State,TX,,,Royalties,-915.9
-June,2026,State,,Onshore,State,TX,,,Sequestration,"-18,331.96"
-June,2026,State,,Onshore,State,TX,,Gas,Royalties,"501,503.52"
-June,2026,State,,Onshore,State,TX,,Oil,Royalties,"25,115.79"
-June,2026,State,,Onshore,State,TX,,Oil & Gas,Other Distributions,"-204,091.94"
-June,2026,State,,Onshore,State,TX,,Oil & Gas,Royalties,1.84
-June,2026,State,,Onshore,State,UT,,,Other Distributions,116.28
-June,2026,State,,Onshore,State,UT,,,Royalties,"-147,754.90"
-June,2026,State,,Onshore,State,UT,,,Sequestration,"-413,027.66"
-June,2026,State,,Onshore,State,UT,,Coal,Other Distributions,"6,930.18"
-June,2026,State,,Onshore,State,UT,,Coal,Rents & Bonuses,511.5
-June,2026,State,,Onshore,State,UT,,Coal,Royalties,"555,428.77"
-June,2026,State,,Onshore,State,UT,,Gas,Royalties,"846,198.34"
-June,2026,State,,Onshore,State,UT,,Geothermal,Other Distributions,"1,275.64"
-June,2026,State,,Onshore,State,UT,,Geothermal,Rents & Bonuses,"10,620.00"
-June,2026,State,,Onshore,State,UT,,Geothermal,Royalties,"32,285.78"
-June,2026,State,,Onshore,State,UT,,Gilsonite,Other Distributions,717
-June,2026,State,,Onshore,State,UT,,Gilsonite,Rents & Bonuses,119.5
-June,2026,State,,Onshore,State,UT,,Gilsonite,Royalties,"68,644.81"
-June,2026,State,,Onshore,State,UT,,Oil,Royalties,"4,724,868.00"
-June,2026,State,,Onshore,State,UT,,Oil & Gas,Other Distributions,"1,117,511.33"
-June,2026,State,,Onshore,State,UT,,Oil & Gas,Rents & Bonuses,"20,544.75"
-June,2026,State,,Onshore,State,UT,,Oil & Gas,Royalties,"8,088.48"
-June,2026,State,,Onshore,State,UT,,Potassium,Other Distributions,"-7,522.50"
-June,2026,State,,Onshore,State,UT,,Potassium,Royalties,"7,516.41"
-June,2026,State,,Onshore,State,VA,,,Sequestration,-386.84
-June,2026,State,,Onshore,State,VA,,Gas,Royalties,"3,070.18"
-June,2026,State,,Onshore,State,VA,,Hardrock,Other Distributions,89.05
-June,2026,State,,Onshore,State,VA,,Hardrock,Rents & Bonuses,-86.37
-June,2026,State,,Onshore,State,VA,,Oil & Gas,Other Distributions,"3,713.84"
-June,2026,State,,Onshore,State,WV,,,Sequestration,-207.61
-June,2026,State,,Onshore,State,WV,,Gas,Royalties,145.78
-June,2026,State,,Onshore,State,WV,,Hardrock,Other Distributions,2.34
-June,2026,State,,Onshore,State,WV,,Hardrock,Rents & Bonuses,-2.27
-June,2026,State,,Onshore,State,WV,,Oil & Gas,Other Distributions,"3,496.43"
-June,2026,State,,Onshore,State,WY,,,Other Distributions,"1,438,893.85"
-June,2026,State,,Onshore,State,WY,,,Royalties,"-922,505.15"
-June,2026,State,,Onshore,State,WY,,,Sequestration,"-2,658,573.82"
-June,2026,State,,Onshore,State,WY,,Coal,Other Distributions,82.53
-June,2026,State,,Onshore,State,WY,,Coal,Rents & Bonuses,"1,080.00"
-June,2026,State,,Onshore,State,WY,,Coal,Royalties,"5,839,754.16"
-June,2026,State,,Onshore,State,WY,,Gas,Royalties,"8,143,326.90"
-June,2026,State,,Onshore,State,WY,,Oil,Royalties,"27,998,900.02"
-June,2026,State,,Onshore,State,WY,,Oil & Gas,Other Distributions,"1,003,188.46"
-June,2026,State,,Onshore,State,WY,,Oil & Gas,Rents & Bonuses,"160,007.29"
-June,2026,State,,Onshore,State,WY,,Oil & Gas,Royalties,"2,292,057.06"
-June,2026,State,,Onshore,State,WY,,Sodium,Other Distributions,16.11
-June,2026,State,,Onshore,State,WY,,Sodium,Royalties,"686,844.75"
-June,2026,U.S. Treasury,1060,Offshore,,,,,Other Distributions,"51,726.12"
-June,2026,U.S. Treasury,1099,Onshore,,,,,Other Distributions,"636,474.36"
-June,2026,U.S. Treasury,1435,Offshore,,,,Oil & Gas,Other Distributions,"1,680,608.24"
-June,2026,U.S. Treasury,1435,Offshore,,,,Wind,Other Distributions,"2,329.17"
-June,2026,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"33,214.95"
-June,2026,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Royalties,"2,958.36"
-June,2026,U.S. Treasury,1435,Onshore,,,,Coal,Other Distributions,88.52
-June,2026,U.S. Treasury,1435,Onshore,,,,Geothermal,Other Distributions,826.49
-June,2026,U.S. Treasury,1435,Onshore,,,,Oil & Gas,Other Distributions,"557,365.21"
-June,2026,U.S. Treasury,1435,Onshore,,,,Potassium,Other Distributions,155.91
-June,2026,U.S. Treasury,1435,Onshore,,,,Sodium,Other Distributions,4.51
-June,2026,U.S. Treasury,1811,Onshore,,,,Coal,Rents & Bonuses,"1,509.00"
-June,2026,U.S. Treasury,1811,Onshore,,,,Geothermal,Rents & Bonuses,"120,279.37"
-June,2026,U.S. Treasury,1811,Onshore,,,,Oil & Gas,Rents & Bonuses,"38,238,577.85"
-June,2026,U.S. Treasury,1820,Offshore,,,,Oil & Gas,Rents & Bonuses,"49,059,951.78"
-June,2026,U.S. Treasury,1820,Offshore,,,,Wind,Rents & Bonuses,"405,648.00"
-June,2026,U.S. Treasury,1820,Offshore,GoMESA,,,Oil,Royalties,"41,247,244.53"
-June,2026,U.S. Treasury,1820,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,"599,168.74"
-June,2026,U.S. Treasury,1820,Offshore,GoMESA,,,Oil & Gas,Royalties,"987,291.18"
-June,2026,U.S. Treasury,2020,Offshore,,,,Gas,Other Distributions,"4,817.15"
-June,2026,U.S. Treasury,2020,Offshore,,,,Gas,Royalties,"17,592,540.00"
-June,2026,U.S. Treasury,2020,Offshore,,,,Oil,Other Distributions,"-49,327.70"
-June,2026,U.S. Treasury,2020,Offshore,,,,Oil,Royalties,"498,022,303.35"
-June,2026,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Other Distributions,"4,765,477.65"
-June,2026,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Rents & Bonuses,"15,331.00"
-June,2026,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Royalties,"406,077.81"
-June,2026,U.S. Treasury,2020,Offshore,,,,Wind,Other Distributions,"803,209.31"
-June,2026,U.S. Treasury,2020,Offshore,GoMESA,,,Gas,Royalties,"6,736,183.70"
-June,2026,U.S. Treasury,2020,Offshore,GoMESA,,,Oil,Royalties,"155,755,594.83"
-June,2026,U.S. Treasury,2020,Offshore,GoMESA,,,Oil & Gas,Royalties,"5,811,015.92"
-June,2026,U.S. Treasury,2039,Onshore,,,,,Other Distributions,"-4,029,302.45"
-June,2026,U.S. Treasury,2039,Onshore,,,,,Royalties,"12,368,947.24"
-June,2026,U.S. Treasury,2039,Onshore,,,,Coal,Other Distributions,"29,286.04"
-June,2026,U.S. Treasury,2039,Onshore,,,,Coal,Royalties,"1,696,921.54"
-June,2026,U.S. Treasury,2039,Onshore,,,,Gas,Other Distributions,26.5
-June,2026,U.S. Treasury,2039,Onshore,,,,Gas,Royalties,"13,736,775.81"
-June,2026,U.S. Treasury,2039,Onshore,,,,Geothermal,Other Distributions,"1,855.50"
-June,2026,U.S. Treasury,2039,Onshore,,,,Geothermal,Royalties,"293,979.40"
-June,2026,U.S. Treasury,2039,Onshore,,,,Gilsonite,Other Distributions,143.4
-June,2026,U.S. Treasury,2039,Onshore,,,,Gilsonite,Royalties,"13,728.96"
-June,2026,U.S. Treasury,2039,Onshore,,,,Oil,Other Distributions,"11,526.68"
-June,2026,U.S. Treasury,2039,Onshore,,,,Oil,Royalties,"73,284,158.88"
-June,2026,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Other Distributions,"6,703,879.77"
-June,2026,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Rents & Bonuses,120
-June,2026,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Royalties,"1,750,330.11"
-June,2026,U.S. Treasury,2039,Onshore,,,,Phosphate,Other Distributions,"2,521.70"
-June,2026,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,"58,916.10"
-June,2026,U.S. Treasury,2039,Onshore,,,,Potassium,Other Distributions,"-1,740.37"
-June,2026,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,"83,249.94"
-June,2026,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,-48.56
-June,2026,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,"158,633.50"
+Month,Calendar Year,Fund Type,Treasury Fund,Land Category,Disbursement Type,State,County,Commodity,Category, Disbursement 
+July,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Coal,Rents & Bonuses,21321.00
+July,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Hardrock,Rents & Bonuses,3783.83
+July,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Oil & Gas,Rents & Bonuses,551012.99
+July,2026,BLM - Permit Processing and Improvement,,Onshore,,,,Phosphate,Rents & Bonuses,-282.50
+July,2026,Bureau of Land Management,,Onshore,,,,Gas,Royalties,5306.56
+July,2026,Bureau of Land Management,,Onshore,,,,Oil,Royalties,86847.22
+July,2026,Bureau of Land Management,,Onshore,,,,Oil & Gas,Other Distributions,1152.06
+July,2026,Bureau of Land Management,,Onshore,,,,Oil & Gas,Rents & Bonuses,40.00
+July,2026,Bureau of Land Management,,Onshore,,,,Oil & Gas,Royalties,419.34
+July,2026,Bureau of Ocean Energy Management,,Offshore,,,,Oil & Gas,Rents & Bonuses,5034785.62
+July,2026,Bureau of Safety & Environmental Enforcement,,Offshore,,,,,Other Distributions,3864593.08
+July,2026,Bureau of Safety & Environmental Enforcement,,Offshore,,,,Oil & Gas,Rents & Bonuses,2157791.98
+July,2026,Fish & Wildlife,,Onshore,,,,Gas,Royalties,10044.45
+July,2026,Fish & Wildlife,,Onshore,,,,Oil,Royalties,78894.60
+July,2026,Fish & Wildlife,,Onshore,,,,Oil & Gas,Other Distributions,1786.69
+July,2026,Fish & Wildlife,,Onshore,,,,Oil & Gas,Rents & Bonuses,65916.00
+July,2026,Fish & Wildlife,,Onshore,,,,Oil & Gas,Royalties,16.67
+July,2026,Forest Service,,Onshore,,,,,Royalties,0.00
+July,2026,Forest Service,,Onshore,,,,Coal,Other Distributions,2.19
+July,2026,Forest Service,,Onshore,,,,Coal,Royalties,34908.25
+July,2026,Forest Service,,Onshore,,,,Copper,Royalties,46437.21
+July,2026,Forest Service,,Onshore,,,,Gas,Royalties,4253398.48
+July,2026,Forest Service,,Onshore,,,,Hardrock,Other Distributions,-263.38
+July,2026,Forest Service,,Onshore,,,,Hardrock,Rents & Bonuses,103.36
+July,2026,Forest Service,,Onshore,,,,Lead/Zinc,Royalties,292304.97
+July,2026,Forest Service,,Onshore,,,,Oil,Royalties,17317170.49
+July,2026,Forest Service,,Onshore,,,,Oil & Gas,Other Distributions,1578936.26
+July,2026,Forest Service,,Onshore,,,,Oil & Gas,Rents & Bonuses,29285713.00
+July,2026,Forest Service,,Onshore,,,,Oil & Gas,Royalties,19093.36
+July,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Gas,Royalties,1341505.98
+July,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil,Royalties,-1555688.25
+July,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,207344.11
+July,2026,Land & Water Conservation Fund,,Offshore,GoMESA,,,Oil & Gas,Royalties,6838.16
+July,2026,Native American Tribes & Allottees,,Onshore,,,,,Other Distributions,380938.62
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Coal,Rents & Bonuses,40000.00
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Coal,Royalties,4289795.64
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Gas,Other Distributions,-247929.06
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Gas,Royalties,7068178.40
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Mining-Unspecified,Royalties,1188.02
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Oil,Other Distributions,-5591.52
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Oil,Royalties,77545276.34
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Other Distributions,12103076.75
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Rents & Bonuses,103013.36
+July,2026,Native American Tribes & Allottees,,Onshore,,,,Oil & Gas,Royalties,5177310.71
+July,2026,Reclamation Fund,,Onshore,,,,Coal,Other Distributions,89183.17
+July,2026,Reclamation Fund,,Onshore,,,,Coal,Royalties,7674241.41
+July,2026,Reclamation Fund,,Onshore,,,,Gas,Other Distributions,-644.42
+July,2026,Reclamation Fund,,Onshore,,,,Gas,Royalties,41906897.21
+July,2026,Reclamation Fund,,Onshore,,,,Gilsonite,Other Distributions,5.96
+July,2026,Reclamation Fund,,Onshore,,,,Gilsonite,Royalties,83166.04
+July,2026,Reclamation Fund,,Onshore,,,,Oil,Other Distributions,2477.73
+July,2026,Reclamation Fund,,Onshore,,,,Oil,Royalties,292554155.38
+July,2026,Reclamation Fund,,Onshore,,,,Oil & Gas,Other Distributions,7997147.81
+July,2026,Reclamation Fund,,Onshore,,,,Oil & Gas,Rents & Bonuses,57490912.00
+July,2026,Reclamation Fund,,Onshore,,,,Oil & Gas,Royalties,1600359.92
+July,2026,Reclamation Fund,,Onshore,,,,Phosphate,Other Distributions,2958.00
+July,2026,Reclamation Fund,,Onshore,,,,Phosphate,Royalties,548419.63
+July,2026,Reclamation Fund,,Onshore,,,,Potassium,Other Distributions,-714.89
+July,2026,Reclamation Fund,,Onshore,,,,Potassium,Royalties,430343.39
+July,2026,Reclamation Fund,,Onshore,,,,Sodium,Other Distributions,-535.27
+July,2026,Reclamation Fund,,Onshore,,,,Sodium,Royalties,752731.57
+July,2026,State,,Offshore,8(g),AK,,Oil,Royalties,91084.32
+July,2026,State,,Offshore,8(g),AL,,Gas,Royalties,128900.35
+July,2026,State,,Offshore,8(g),AL,,Oil,Royalties,904.64
+July,2026,State,,Offshore,8(g),AL,,Oil & Gas,Other Distributions,-54101.57
+July,2026,State,,Offshore,8(g),CA,,Gas,Royalties,25.49
+July,2026,State,,Offshore,8(g),CA,,Oil,Royalties,-142.84
+July,2026,State,,Offshore,8(g),CA,,Oil & Gas,Royalties,117.35
+July,2026,State,,Offshore,8(g),LA,,Gas,Royalties,42065.74
+July,2026,State,,Offshore,8(g),LA,,Oil,Other Distributions,-536.16
+July,2026,State,,Offshore,8(g),LA,,Oil,Royalties,182344.02
+July,2026,State,,Offshore,8(g),LA,,Oil & Gas,Other Distributions,25265.24
+July,2026,State,,Offshore,8(g),MS,,Gas,Royalties,3016.29
+July,2026,State,,Offshore,8(g),MS,,Oil & Gas,Other Distributions,-1675.80
+July,2026,State,,Offshore,8(g),TX,,Gas,Royalties,1108.61
+July,2026,State,,Offshore,8(g),TX,,Oil & Gas,Other Distributions,522.99
+July,2026,State,,Onshore,Geothermal,CA,Imperial County,,Royalties,-489.45
+July,2026,State,,Onshore,Geothermal,CA,Imperial County,Geothermal,Royalties,489.45
+July,2026,State,,Onshore,Geothermal,CA,Inyo County,,Sequestration,-23.33
+July,2026,State,,Onshore,Geothermal,CA,Inyo County,Geothermal,Royalties,409.29
+July,2026,State,,Onshore,Geothermal,CA,Lake County,,Sequestration,-2402.17
+July,2026,State,,Onshore,Geothermal,CA,Lake County,Geothermal,Royalties,42143.37
+July,2026,State,,Onshore,Geothermal,CA,Lassen County,,Sequestration,-170.98
+July,2026,State,,Onshore,Geothermal,CA,Lassen County,Geothermal,Royalties,2999.70
+July,2026,State,,Onshore,Geothermal,CA,Mono County,,Sequestration,-3324.03
+July,2026,State,,Onshore,Geothermal,CA,Mono County,Geothermal,Royalties,58316.30
+July,2026,State,,Onshore,Geothermal,CA,Sonoma County,,Sequestration,-3964.28
+July,2026,State,,Onshore,Geothermal,CA,Sonoma County,Geothermal,Royalties,69548.85
+July,2026,State,,Onshore,Geothermal,NM,Hidalgo Caounty,,Sequestration,-334.45
+July,2026,State,,Onshore,Geothermal,NM,Hidalgo Caounty,Geothermal,Royalties,5867.58
+July,2026,State,,Onshore,Geothermal,NV,Churchill County,,Sequestration,-285.58
+July,2026,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Other Distributions,20.89
+July,2026,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Rents & Bonuses,2360.58
+July,2026,State,,Onshore,Geothermal,NV,Churchill County,Geothermal,Royalties,2628.68
+July,2026,State,,Onshore,Geothermal,NV,Elko County,,Sequestration,-9.12
+July,2026,State,,Onshore,Geothermal,NV,Elko County,Geothermal,Rents & Bonuses,160.00
+July,2026,State,,Onshore,Geothermal,NV,Esmeralda County,,Sequestration,-18.24
+July,2026,State,,Onshore,Geothermal,NV,Esmeralda County,Geothermal,Rents & Bonuses,320.00
+July,2026,State,,Onshore,Geothermal,NV,Eureka County,,Sequestration,-354.96
+July,2026,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Rents & Bonuses,6214.50
+July,2026,State,,Onshore,Geothermal,NV,Eureka County,Geothermal,Royalties,12.94
+July,2026,State,,Onshore,Geothermal,NV,Humboldt County,,Sequestration,-645.69
+July,2026,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Rents & Bonuses,-143.01
+July,2026,State,,Onshore,Geothermal,NV,Humboldt County,Geothermal,Royalties,11470.95
+July,2026,State,,Onshore,Geothermal,NV,Lander County,,Sequestration,-3137.64
+July,2026,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Rents & Bonuses,-42.50
+July,2026,State,,Onshore,Geothermal,NV,Lander County,Geothermal,Royalties,55088.86
+July,2026,State,,Onshore,Geothermal,NV,Lyon County,,Sequestration,-18.62
+July,2026,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Rents & Bonuses,-116.25
+July,2026,State,,Onshore,Geothermal,NV,Lyon County,Geothermal,Royalties,442.92
+July,2026,State,,Onshore,Geothermal,NV,Mineral County,,Sequestration,-958.07
+July,2026,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Rents & Bonuses,7867.01
+July,2026,State,,Onshore,Geothermal,NV,Mineral County,Geothermal,Royalties,8941.25
+July,2026,State,,Onshore,Geothermal,NV,Pershing County,,Sequestration,-263.23
+July,2026,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Rents & Bonuses,4266.25
+July,2026,State,,Onshore,Geothermal,NV,Pershing County,Geothermal,Royalties,351.75
+July,2026,State,,Onshore,Geothermal,NV,Washoe County,,Sequestration,-281.09
+July,2026,State,,Onshore,Geothermal,NV,Washoe County,Geothermal,Royalties,4931.46
+July,2026,State,,Onshore,Geothermal,NV,White Pine County,,Sequestration,-77.53
+July,2026,State,,Onshore,Geothermal,NV,White Pine County,Geothermal,Rents & Bonuses,1360.25
+July,2026,State,,Onshore,Geothermal,UT,Beaver County,,Sequestration,-1122.73
+July,2026,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Rents & Bonuses,158.08
+July,2026,State,,Onshore,Geothermal,UT,Beaver County,Geothermal,Royalties,19539.02
+July,2026,State,,Onshore,Geothermal,UT,Millard County,,Sequestration,-233.78
+July,2026,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Rents & Bonuses,2894.42
+July,2026,State,,Onshore,Geothermal,UT,Millard County,Geothermal,Royalties,1207.04
+July,2026,State,,Onshore,State,AK,,,Royalties,-19605.07
+July,2026,State,,Onshore,State,AK,,,Sequestration,-164355.49
+July,2026,State,,Onshore,State,AK,,Gas,Royalties,743540.46
+July,2026,State,,Onshore,State,AK,,Oil,Other Distributions,3835.85
+July,2026,State,,Onshore,State,AK,,Oil,Royalties,2154808.28
+July,2026,State,,Onshore,State,AK,,Oil & Gas,Other Distributions,850.12
+July,2026,State,,Onshore,State,AL,,,Royalties,-690.56
+July,2026,State,,Onshore,State,AL,,,Sequestration,-2084.17
+July,2026,State,,Onshore,State,AL,,Coal,Royalties,32127.43
+July,2026,State,,Onshore,State,AL,,Gas,Royalties,2448.11
+July,2026,State,,Onshore,State,AL,,Oil,Royalties,2558.53
+July,2026,State,,Onshore,State,AL,,Oil & Gas,Other Distributions,1.29
+July,2026,State,,Onshore,State,AL,,Oil & Gas,Royalties,119.53
+July,2026,State,,Onshore,State,AR,,,Royalties,-475.40
+July,2026,State,,Onshore,State,AR,,,Sequestration,-2701.59
+July,2026,State,,Onshore,State,AR,,Gas,Royalties,46469.18
+July,2026,State,,Onshore,State,AR,,Oil & Gas,Other Distributions,1402.59
+July,2026,State,,Onshore,State,CA,,,Other Distributions,2586.91
+July,2026,State,,Onshore,State,CA,,,Royalties,-74485.87
+July,2026,State,,Onshore,State,CA,,,Sequestration,-208186.56
+July,2026,State,,Onshore,State,CA,,Gas,Royalties,25904.75
+July,2026,State,,Onshore,State,CA,,Geothermal,Royalties,423932.18
+July,2026,State,,Onshore,State,CA,,Hardrock,Other Distributions,0.81
+July,2026,State,,Onshore,State,CA,,Hardrock,Rents & Bonuses,0.00
+July,2026,State,,Onshore,State,CA,,Oil,Royalties,3147543.25
+July,2026,State,,Onshore,State,CA,,Oil & Gas,Other Distributions,126928.74
+July,2026,State,,Onshore,State,CA,,Oil & Gas,Rents & Bonuses,-168.25
+July,2026,State,,Onshore,State,CA,,Potassium,Other Distributions,-600.00
+July,2026,State,,Onshore,State,CA,,Sodium,Other Distributions,-853.64
+July,2026,State,,Onshore,State,CA,,Sodium,Royalties,1606.72
+July,2026,State,,Onshore,State,CO,,,Other Distributions,6.81
+July,2026,State,,Onshore,State,CO,,,Royalties,-189910.23
+July,2026,State,,Onshore,State,CO,,,Sequestration,-530444.74
+July,2026,State,,Onshore,State,CO,,Coal,Other Distributions,1923.80
+July,2026,State,,Onshore,State,CO,,Coal,Royalties,1254034.02
+July,2026,State,,Onshore,State,CO,,Gas,Royalties,1784406.65
+July,2026,State,,Onshore,State,CO,,Oil,Royalties,2539326.45
+July,2026,State,,Onshore,State,CO,,Oil & Gas,Other Distributions,-165169.30
+July,2026,State,,Onshore,State,CO,,Oil & Gas,Rents & Bonuses,2401723.46
+July,2026,State,,Onshore,State,CO,,Oil & Gas,Royalties,1679706.46
+July,2026,State,,Onshore,State,ID,,,Other Distributions,168.54
+July,2026,State,,Onshore,State,ID,,,Royalties,-13785.75
+July,2026,State,,Onshore,State,ID,,,Sequestration,-38513.22
+July,2026,State,,Onshore,State,ID,,Oil & Gas,Other Distributions,1774.00
+July,2026,State,,Onshore,State,ID,,Phosphate,Other Distributions,3697.50
+July,2026,State,,Onshore,State,ID,,Phosphate,Rents & Bonuses,-282.50
+July,2026,State,,Onshore,State,ID,,Phosphate,Royalties,684098.67
+July,2026,State,,Onshore,State,IL,,,Sequestration,-506.22
+July,2026,State,,Onshore,State,IL,,Oil,Royalties,8881.04
+July,2026,State,,Onshore,State,KS,,,Royalties,-1293.20
+July,2026,State,,Onshore,State,KS,,,Sequestration,-3611.90
+July,2026,State,,Onshore,State,KS,,Gas,Royalties,26328.08
+July,2026,State,,Onshore,State,KS,,Oil,Royalties,26210.68
+July,2026,State,,Onshore,State,KS,,Oil & Gas,Other Distributions,223.57
+July,2026,State,,Onshore,State,KS,,Oil & Gas,Rents & Bonuses,11897.50
+July,2026,State,,Onshore,State,KY,,,Sequestration,-51.87
+July,2026,State,,Onshore,State,KY,,Gas,Royalties,668.92
+July,2026,State,,Onshore,State,KY,,Oil & Gas,Other Distributions,241.01
+July,2026,State,,Onshore,State,LA,,,Royalties,-16455.03
+July,2026,State,,Onshore,State,LA,,,Sequestration,-53808.31
+July,2026,State,,Onshore,State,LA,,Gas,Royalties,912123.77
+July,2026,State,,Onshore,State,LA,,Oil,Royalties,39599.01
+July,2026,State,,Onshore,State,LA,,Oil & Gas,Other Distributions,8737.72
+July,2026,State,,Onshore,State,MI,,,Royalties,-194.28
+July,2026,State,,Onshore,State,MI,,,Sequestration,-602.08
+July,2026,State,,Onshore,State,MI,,Gas,Royalties,10204.18
+July,2026,State,,Onshore,State,MI,,Oil,Royalties,549.96
+July,2026,State,,Onshore,State,MI,,Oil & Gas,Other Distributions,3.07
+July,2026,State,,Onshore,State,MN,,,Other Distributions,2.69
+July,2026,State,,Onshore,State,MN,,,Royalties,-76.35
+July,2026,State,,Onshore,State,MN,,,Sequestration,-213.40
+July,2026,State,,Onshore,State,MN,,Hardrock,Rents & Bonuses,3817.50
+July,2026,State,,Onshore,State,MO,,,Sequestration,-6431.09
+July,2026,State,,Onshore,State,MO,,Copper,Royalties,15479.03
+July,2026,State,,Onshore,State,MO,,Hardrock,Other Distributions,-87.79
+July,2026,State,,Onshore,State,MO,,Lead/Zinc,Royalties,97434.85
+July,2026,State,,Onshore,State,MS,,,Royalties,-27.95
+July,2026,State,,Onshore,State,MS,,,Sequestration,-1975.61
+July,2026,State,,Onshore,State,MS,,Gas,Royalties,925.03
+July,2026,State,,Onshore,State,MS,,Oil,Royalties,33333.58
+July,2026,State,,Onshore,State,MS,,Oil & Gas,Royalties,429.15
+July,2026,State,,Onshore,State,MT,,,Other Distributions,1.49
+July,2026,State,,Onshore,State,MT,,,Royalties,-47957.88
+July,2026,State,,Onshore,State,MT,,,Sequestration,-133946.43
+July,2026,State,,Onshore,State,MT,,Coal,Rents & Bonuses,2070.00
+July,2026,State,,Onshore,State,MT,,Coal,Royalties,1391955.61
+July,2026,State,,Onshore,State,MT,,Gas,Royalties,38058.82
+July,2026,State,,Onshore,State,MT,,Oil,Royalties,903092.48
+July,2026,State,,Onshore,State,MT,,Oil & Gas,Other Distributions,7249.76
+July,2026,State,,Onshore,State,MT,,Oil & Gas,Rents & Bonuses,51418.86
+July,2026,State,,Onshore,State,MT,,Oil & Gas,Royalties,4048.39
+July,2026,State,,Onshore,State,ND,,,Other Distributions,4.80
+July,2026,State,,Onshore,State,ND,,,Royalties,-288033.15
+July,2026,State,,Onshore,State,ND,,,Sequestration,-1111962.69
+July,2026,State,,Onshore,State,ND,,Coal,Rents & Bonuses,120.00
+July,2026,State,,Onshore,State,ND,,Coal,Royalties,96766.39
+July,2026,State,,Onshore,State,ND,,Gas,Royalties,324415.93
+July,2026,State,,Onshore,State,ND,,Oil,Royalties,9848171.04
+July,2026,State,,Onshore,State,ND,,Oil & Gas,Other Distributions,654323.46
+July,2026,State,,Onshore,State,ND,,Oil & Gas,Rents & Bonuses,8825300.19
+July,2026,State,,Onshore,State,ND,,Oil & Gas,Royalties,47048.79
+July,2026,State,,Onshore,State,NE,,,Royalties,-23.62
+July,2026,State,,Onshore,State,NE,,,Sequestration,-65.97
+July,2026,State,,Onshore,State,NE,,Oil,Royalties,1180.93
+July,2026,State,,Onshore,State,NM,,,Other Distributions,96.18
+July,2026,State,,Onshore,State,NM,,,Royalties,-7407040.07
+July,2026,State,,Onshore,State,NM,,,Sequestration,-20687868.42
+July,2026,State,,Onshore,State,NM,,Coal,Other Distributions,102420.44
+July,2026,State,,Onshore,State,NM,,Coal,Rents & Bonuses,60.00
+July,2026,State,,Onshore,State,NM,,Gas,Other Distributions,-806.40
+July,2026,State,,Onshore,State,NM,,Gas,Royalties,40586595.90
+July,2026,State,,Onshore,State,NM,,Geothermal,Royalties,10648.16
+July,2026,State,,Onshore,State,NM,,Oil,Other Distributions,3106.12
+July,2026,State,,Onshore,State,NM,,Oil,Royalties,318586488.44
+July,2026,State,,Onshore,State,NM,,Oil & Gas,Other Distributions,10384677.47
+July,2026,State,,Onshore,State,NM,,Oil & Gas,Rents & Bonuses,14240.85
+July,2026,State,,Onshore,State,NM,,Oil & Gas,Royalties,79726.23
+July,2026,State,,Onshore,State,NM,,Potassium,Royalties,533176.64
+July,2026,State,,Onshore,State,NM,,Sodium,Royalties,51669.99
+July,2026,State,,Onshore,State,NV,,,Other Distributions,244.52
+July,2026,State,,Onshore,State,NV,,,Royalties,-8131.58
+July,2026,State,,Onshore,State,NV,,,Sequestration,-22725.44
+July,2026,State,,Onshore,State,NV,,Geothermal,Rents & Bonuses,39571.00
+July,2026,State,,Onshore,State,NV,,Geothermal,Royalties,292090.13
+July,2026,State,,Onshore,State,NV,,Oil,Royalties,74877.79
+July,2026,State,,Onshore,State,NV,,Oil & Gas,Other Distributions,40.00
+July,2026,State,,Onshore,State,OH,,,Sequestration,-1523.46
+July,2026,State,,Onshore,State,OH,,Gas,Royalties,10610.94
+July,2026,State,,Onshore,State,OH,,Oil,Royalties,12763.42
+July,2026,State,,Onshore,State,OH,,Oil & Gas,Other Distributions,3352.99
+July,2026,State,,Onshore,State,OK,,,Royalties,-10151.92
+July,2026,State,,Onshore,State,OK,,,Sequestration,-31236.67
+July,2026,State,,Onshore,State,OK,,Gas,Royalties,220093.42
+July,2026,State,,Onshore,State,OK,,Oil,Royalties,336906.41
+July,2026,State,,Onshore,State,OK,,Oil & Gas,Other Distributions,1148.26
+July,2026,State,,Onshore,State,OK,,Oil & Gas,Royalties,15.51
+July,2026,State,,Onshore,State,PA,,Gas,Royalties,0.00
+July,2026,State,,Onshore,State,PA,,Oil,Royalties,-124.87
+July,2026,State,,Onshore,State,PA,,Oil & Gas,Other Distributions,124.87
+July,2026,State,,Onshore,State,SD,,,Royalties,-918.39
+July,2026,State,,Onshore,State,SD,,,Sequestration,-2565.07
+July,2026,State,,Onshore,State,SD,,Oil,Royalties,39291.15
+July,2026,State,,Onshore,State,SD,,Oil & Gas,Other Distributions,1036.29
+July,2026,State,,Onshore,State,SD,,Oil & Gas,Rents & Bonuses,5560.00
+July,2026,State,,Onshore,State,SD,,Oil & Gas,Royalties,32.15
+July,2026,State,,Onshore,State,TX,,,Royalties,-608.16
+July,2026,State,,Onshore,State,TX,,,Sequestration,-26448.19
+July,2026,State,,Onshore,State,TX,,Gas,Royalties,451460.98
+July,2026,State,,Onshore,State,TX,,Oil,Royalties,25531.47
+July,2026,State,,Onshore,State,TX,,Oil & Gas,Other Distributions,-12382.72
+July,2026,State,,Onshore,State,TX,,Oil & Gas,Royalties,1.87
+July,2026,State,,Onshore,State,UT,,,Other Distributions,42.59
+July,2026,State,,Onshore,State,UT,,,Royalties,-1387911.65
+July,2026,State,,Onshore,State,UT,,,Sequestration,-3876748.18
+July,2026,State,,Onshore,State,UT,,Coal,Other Distributions,6919.84
+July,2026,State,,Onshore,State,UT,,Coal,Rents & Bonuses,10300.50
+July,2026,State,,Onshore,State,UT,,Coal,Royalties,1105248.82
+July,2026,State,,Onshore,State,UT,,Gas,Royalties,1266077.31
+July,2026,State,,Onshore,State,UT,,Geothermal,Rents & Bonuses,6105.00
+July,2026,State,,Onshore,State,UT,,Geothermal,Royalties,41492.21
+July,2026,State,,Onshore,State,UT,,Gilsonite,Other Distributions,7.45
+July,2026,State,,Onshore,State,UT,,Gilsonite,Royalties,103957.59
+July,2026,State,,Onshore,State,UT,,Oil,Royalties,6531791.54
+July,2026,State,,Onshore,State,UT,,Oil & Gas,Other Distributions,-23069.21
+July,2026,State,,Onshore,State,UT,,Oil & Gas,Rents & Bonuses,60345305.74
+July,2026,State,,Onshore,State,UT,,Oil & Gas,Royalties,972.70
+July,2026,State,,Onshore,State,UT,,Phosphate,Royalties,1425.93
+July,2026,State,,Onshore,State,UT,,Potassium,Other Distributions,-293.72
+July,2026,State,,Onshore,State,UT,,Potassium,Royalties,4753.19
+July,2026,State,,Onshore,State,VA,,,Sequestration,-92.74
+July,2026,State,,Onshore,State,VA,,Gas,Royalties,1627.08
+July,2026,State,,Onshore,State,WV,,,Sequestration,-817.03
+July,2026,State,,Onshore,State,WV,,Gas,Royalties,218.63
+July,2026,State,,Onshore,State,WV,,Oil & Gas,Other Distributions,14115.10
+July,2026,State,,Onshore,State,WY,,,Other Distributions,1318.03
+July,2026,State,,Onshore,State,WY,,,Royalties,-854776.80
+July,2026,State,,Onshore,State,WY,,,Sequestration,-2387466.74
+July,2026,State,,Onshore,State,WY,,Coal,Other Distributions,214.97
+July,2026,State,,Onshore,State,WY,,Coal,Rents & Bonuses,8770.50
+July,2026,State,,Onshore,State,WY,,Coal,Royalties,5712670.05
+July,2026,State,,Onshore,State,WY,,Gas,Royalties,6970998.67
+July,2026,State,,Onshore,State,WY,,Oil,Royalties,28222958.48
+July,2026,State,,Onshore,State,WY,,Oil & Gas,Other Distributions,-799108.26
+July,2026,State,,Onshore,State,WY,,Oil & Gas,Rents & Bonuses,1537505.96
+July,2026,State,,Onshore,State,WY,,Oil & Gas,Royalties,197006.99
+July,2026,State,,Onshore,State,WY,,Sodium,Other Distributions,184.60
+July,2026,State,,Onshore,State,WY,,Sodium,Royalties,887638.17
+July,2026,U.S. Treasury,1060,Offshore,,,,,Other Distributions,1879.74
+July,2026,U.S. Treasury,1099,Onshore,,,,,Other Distributions,287283.86
+July,2026,U.S. Treasury,1435,Offshore,,,,Oil & Gas,Other Distributions,134906.12
+July,2026,U.S. Treasury,1435,Offshore,,,,Wind,Other Distributions,6447.88
+July,2026,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,310589.46
+July,2026,U.S. Treasury,1435,Offshore,GoMESA,,,Oil & Gas,Royalties,200.76
+July,2026,U.S. Treasury,1435,Onshore,,,,Coal,Other Distributions,53.60
+July,2026,U.S. Treasury,1435,Onshore,,,,Gilsonite,Other Distributions,1.49
+July,2026,U.S. Treasury,1435,Onshore,,,,Oil & Gas,Other Distributions,148391.94
+July,2026,U.S. Treasury,1435,Onshore,,,,Sodium,Other Distributions,36.91
+July,2026,U.S. Treasury,1811,Onshore,,,,Coal,Rents & Bonuses,449.61
+July,2026,U.S. Treasury,1811,Onshore,,,,Geothermal,Rents & Bonuses,22837.99
+July,2026,U.S. Treasury,1811,Onshore,,,,Oil & Gas,Rents & Bonuses,21025885.50
+July,2026,U.S. Treasury,1820,Offshore,,,,,Other Distributions,0.00
+July,2026,U.S. Treasury,1820,Offshore,,,,Oil & Gas,Rents & Bonuses,4883836.35
+July,2026,U.S. Treasury,1820,Offshore,,,,Wind,Rents & Bonuses,-157975.00
+July,2026,U.S. Treasury,1820,Offshore,GoMESA,,,Oil,Royalties,41285465.22
+July,2026,U.S. Treasury,1820,Offshore,GoMESA,,,Oil & Gas,Rents & Bonuses,518769.60
+July,2026,U.S. Treasury,2020,Offshore,,,,Gas,Other Distributions,3947.52
+July,2026,U.S. Treasury,2020,Offshore,,,,Gas,Royalties,9536603.15
+July,2026,U.S. Treasury,2020,Offshore,,,,Oil,Other Distributions,-546679.01
+July,2026,U.S. Treasury,2020,Offshore,,,,Oil,Royalties,479665151.96
+July,2026,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Other Distributions,5938101.45
+July,2026,U.S. Treasury,2020,Offshore,,,,Oil & Gas,Royalties,11958.38
+July,2026,U.S. Treasury,2020,Offshore,,,,Wind,Other Distributions,-122551.84
+July,2026,U.S. Treasury,2020,Offshore,GoMESA,,,Gas,Royalties,5366029.82
+July,2026,U.S. Treasury,2020,Offshore,GoMESA,,,Oil,Royalties,158919112.90
+July,2026,U.S. Treasury,2020,Offshore,GoMESA,,,Oil & Gas,Royalties,27152.52
+July,2026,U.S. Treasury,2039,Onshore,,,,,Other Distributions,-4472.56
+July,2026,U.S. Treasury,2039,Onshore,,,,,Royalties,10322552.91
+July,2026,U.S. Treasury,2039,Onshore,,,,Coal,Other Distributions,22242.21
+July,2026,U.S. Treasury,2039,Onshore,,,,Coal,Royalties,1918560.48
+July,2026,U.S. Treasury,2039,Onshore,,,,Gas,Other Distributions,-161.33
+July,2026,U.S. Treasury,2039,Onshore,,,,Gas,Royalties,11598985.55
+July,2026,U.S. Treasury,2039,Onshore,,,,Geothermal,Royalties,326667.90
+July,2026,U.S. Treasury,2039,Onshore,,,,Gilsonite,Royalties,20791.52
+July,2026,U.S. Treasury,2039,Onshore,,,,Oil,Other Distributions,4457.07
+July,2026,U.S. Treasury,2039,Onshore,,,,Oil,Royalties,79737939.65
+July,2026,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Other Distributions,1894038.59
+July,2026,U.S. Treasury,2039,Onshore,,,,Oil & Gas,Royalties,406510.60
+July,2026,U.S. Treasury,2039,Onshore,,,,Phosphate,Other Distributions,739.50
+July,2026,U.S. Treasury,2039,Onshore,,,,Phosphate,Royalties,137104.93
+July,2026,U.S. Treasury,2039,Onshore,,,,Potassium,Other Distributions,-187.75
+July,2026,U.S. Treasury,2039,Onshore,,,,Potassium,Royalties,107734.30
+July,2026,U.S. Treasury,2039,Onshore,,,,Sodium,Other Distributions,-170.73
+July,2026,U.S. Treasury,2039,Onshore,,,,Sodium,Royalties,188182.97
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
