@@ -37,7 +37,7 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          July 13, 2026 changes:
+          August 18, 2026 changes:
           </Typography>
         <List className={classes.changeList}>
         <ListItem>
