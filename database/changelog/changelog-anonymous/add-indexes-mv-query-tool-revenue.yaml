@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: add-indexes-mv-query-tool-revenue
+      author: Jeff Schwartz
+      # runAlways because src/mviews/mv_query_tool_revenue.sql begins with
+      # DROP MATERIALIZED VIEW IF EXISTS and its changeset is runOnChange.
+      # Any redefinition of the matview drops these indexes with it, so this
+      # changeset has to be able to put them back. IF NOT EXISTS makes it a
+      # cheap no-op on every other deploy.
+      runAlways: true
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          # Raw SQL rather than createIndex: Liquibase's createIndex targets
+          # tables, and mv_query_tool_revenue is a materialized view.
+          sql: |
+            CREATE INDEX IF NOT EXISTS idx_mv_qtr_period_fiscal_year
+              ON mv_query_tool_revenue (period, fiscal_year);
+            CREATE INDEX IF NOT EXISTS idx_mv_qtr_period_calendar_year
+              ON mv_query_tool_revenue (period, calendar_year);
+            CREATE INDEX IF NOT EXISTS idx_mv_qtr_period_state_offshore_name
+              ON mv_query_tool_revenue (period, state_offshore_name);
+            CREATE INDEX IF NOT EXISTS idx_mv_qtr_period_commodity
+              ON mv_query_tool_revenue (period, commodity);
+            ANALYZE mv_query_tool_revenue;

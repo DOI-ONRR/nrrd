@@ -8,7 +8,7 @@ BEGIN
         NEW.state := '';
         NEW.county := '';
         NEW.fips_code := 'GMR';
-        NEW.offshore_region := 'Gulf of Mexico';
+        NEW.offshore_region := 'Gulf of America';
     END IF;
 
     IF NEW.fips_code IS NULL THEN
