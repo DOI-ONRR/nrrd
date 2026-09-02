@@ -1,0 +1,1185 @@
+Sale Year,Commodity,Product Code,Product Code Description, Sale Volume 
+2001,Carbon Dioxide,CO,Carbon Dioxide,60
+2001,Cinders,CC,Cinders,"2,962"
+2001,Clay,CG,Clay,"27,780"
+2001,Coal,ED,Coal-Bituminous-Raw,"2,311"
+2001,Coal,EE,Coal,"137,686,704"
+2001,Cobalt,CL,Cobalt Concentrate,0
+2001,Copper,CH,Copper Concentrate,"16,385"
+2001,Gilsonite,GF,Gilsonite,"1,710"
+2001,Gypsum,GH,Gypsum,"134,618"
+2001,Lead,PC,Lead Concentrate,"130,299"
+2001,Limestone,PG,Limestone,"9,037"
+2001,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2001,Phosphate,PK,Phosphate Raw Ore,"1,299,687"
+2001,Phosphate,PN,Potassium Sulphate-Standard,"33,515"
+2001,Potassium,JD,Muriate Of Potash-Standard,"45,610"
+2001,Potassium,JL,Muriate Of Potash-Granular,"101,313"
+2001,Potassium,JP,Potash,"95,065"
+2001,Potassium,LG,Langbeinite,"164,841"
+2001,Potassium,MG,Magnesium Chloride Brine,"67,489"
+2001,Potassium,MS,Manure Salts,"4,537"
+2001,Quartz,QB,Quartz Crystal,0
+2001,Sand & Gravel,SF,Sand/Gravel,"2,268,369"
+2001,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"81,905"
+2001,Soda Ash,SJ,Soda Ash,"2,819,411"
+2001,Sodium,BH,Borax-Anhydrous,"2,988"
+2001,Sodium,BJ,Borax-Decahydrate,"24,070"
+2001,Sodium,BL,Borax-Pentahydrate,"13,903"
+2001,Sodium,BM,Boric Acid,"10,886"
+2001,Sodium,ND,Brine Barrels,"10,479"
+2001,Sodium,PP,Purge Liquor,"29,285"
+2001,Sodium,SA,Salt,"112,602"
+2001,Sodium,SB,Sodium Bi-Carbonate,"56,036"
+2001,Sodium,SN,Anhydrous Sodium Sulfate,"68,437"
+2001,Sodium,SP,Sodium Sesquicarbonate,"33,902"
+2001,Sodium,SR,Caustic,"4,354"
+2001,Sodium,TJ,Trona Ore,"27,413"
+2001,Sulfur,SS,Sulfur,0
+2001,Zinc,ZA,Zinc Concentrate,"34,621"
+2002,Carbon Dioxide,CO,Carbon Dioxide,"3,148"
+2002,Cinders,CC,Cinders,"6,925"
+2002,Clay,CG,Clay,"90,792"
+2002,Coal,ED,Coal-Bituminous-Raw,"4,331"
+2002,Coal,EE,Coal,"538,258,317"
+2002,Cobalt,CL,Cobalt Concentrate,0
+2002,Copper,CH,Copper Concentrate,"70,427"
+2002,Gilsonite,GF,Gilsonite,"8,388"
+2002,Gypsum,GH,Gypsum,"601,381"
+2002,Lead,PC,Lead Concentrate,"512,951"
+2002,Limestone,PG,Limestone,"145,704"
+2002,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2002,Phosphate,FB,Ferro Phosphorous Slag,0
+2002,Phosphate,PK,Phosphate Raw Ore,"6,736,432"
+2002,Phosphate,PN,Potassium Sulphate-Standard,"157,915"
+2002,Potassium,JD,Muriate Of Potash-Standard,"203,892"
+2002,Potassium,JL,Muriate Of Potash-Granular,"314,093"
+2002,Potassium,JP,Potash,"376,735"
+2002,Potassium,LG,Langbeinite,"820,531"
+2002,Potassium,MG,Magnesium Chloride Brine,"250,794"
+2002,Potassium,MS,Manure Salts,"16,503"
+2002,Quartz,QB,Quartz Crystal,"4,977"
+2002,Sand & Gravel,SF,Sand/Gravel,"8,011,133"
+2002,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"202,855"
+2002,Soda Ash,SJ,Soda Ash,"11,408,205"
+2002,Sodium,BH,Borax-Anhydrous,0
+2002,Sodium,BJ,Borax-Decahydrate,"105,020"
+2002,Sodium,BL,Borax-Pentahydrate,"53,929"
+2002,Sodium,BM,Boric Acid,"44,884"
+2002,Sodium,ND,Brine Barrels,"50,298"
+2002,Sodium,PP,Purge Liquor,"125,929"
+2002,Sodium,SA,Salt,"385,539"
+2002,Sodium,SB,Sodium Bi-Carbonate,"221,786"
+2002,Sodium,SN,Anhydrous Sodium Sulfate,"259,501"
+2002,Sodium,SP,Sodium Sesquicarbonate,"147,554"
+2002,Sodium,SR,Caustic,"3,750"
+2002,Sodium,TJ,Trona Ore,"93,617"
+2002,Sulfur,SS,Sulfur,0
+2002,Zinc,ZA,Zinc Concentrate,"134,810"
+2003,Carbon Dioxide,CO,Carbon Dioxide,"1,555"
+2003,Cinders,CC,Cinders,"9,549"
+2003,Clay,CG,Clay,"77,319"
+2003,Coal,ED,Coal-Bituminous-Raw,"3,983"
+2003,Coal,EE,Coal,"545,566,591"
+2003,Cobalt,CL,Cobalt Concentrate,0
+2003,Copper,CH,Copper Concentrate,"91,696"
+2003,Gilsonite,GF,Gilsonite,"8,710"
+2003,Gypsum,GH,Gypsum,"703,856"
+2003,Lead,PC,Lead Concentrate,"517,906"
+2003,Limestone,PG,Limestone,"170,414"
+2003,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2003,Phosphate,FB,Ferro Phosphorous Slag,0
+2003,Phosphate,PK,Phosphate Raw Ore,"5,497,170"
+2003,Phosphate,PN,Potassium Sulphate-Standard,"119,942"
+2003,Potassium,JD,Muriate Of Potash-Standard,"116,027"
+2003,Potassium,JL,Muriate Of Potash-Granular,"342,108"
+2003,Potassium,JP,Potash,"352,660"
+2003,Potassium,LG,Langbeinite,"881,367"
+2003,Potassium,MG,Magnesium Chloride Brine,"220,259"
+2003,Potassium,MS,Manure Salts,"15,612"
+2003,Quartz,QB,Quartz Crystal,"1,446"
+2003,Sand & Gravel,SF,Sand/Gravel,"8,487,543"
+2003,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"273,523"
+2003,Soda Ash,SJ,Soda Ash,"11,504,874"
+2003,Sodium,BH,Borax-Anhydrous,"2,376"
+2003,Sodium,BJ,Borax-Decahydrate,"72,547"
+2003,Sodium,BL,Borax-Pentahydrate,"71,853"
+2003,Sodium,BM,Boric Acid,"43,467"
+2003,Sodium,ND,Brine Barrels,"61,254"
+2003,Sodium,PP,Purge Liquor,"149,750"
+2003,Sodium,SA,Salt,"406,733"
+2003,Sodium,SB,Sodium Bi-Carbonate,"234,370"
+2003,Sodium,SN,Anhydrous Sodium Sulfate,"238,453"
+2003,Sodium,SP,Sodium Sesquicarbonate,"144,763"
+2003,Sodium,SR,Caustic,0
+2003,Sodium,TJ,Trona Ore,"112,575"
+2003,Sulfur,SS,Sulfur,0
+2003,Zinc,ZA,Zinc Concentrate,"119,466"
+2004,Carbon Dioxide,CO,Carbon Dioxide,121
+2004,Cinders,CC,Cinders,"12,630"
+2004,Clay,CG,Clay,"51,999"
+2004,Coal,ED,Coal-Bituminous-Raw,"4,790"
+2004,Coal,EE,Coal,"576,298,968"
+2004,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2004,Cobalt,CL,Cobalt Concentrate,0
+2004,Copper,CH,Copper Concentrate,"92,383"
+2004,Gilsonite,GF,Gilsonite,"6,040"
+2004,Gold,B0,Gold,26
+2004,Gypsum,GH,Gypsum,"822,724"
+2004,Lead,PC,Lead Concentrate,"517,454"
+2004,Limestone,PG,Limestone,"126,597"
+2004,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2004,Phosphate,FB,Ferro Phosphorous Slag,0
+2004,Phosphate,PK,Phosphate Raw Ore,"4,893,116"
+2004,Phosphate,PN,Potassium Sulphate-Standard,0
+2004,Potassium,JD,Muriate Of Potash-Standard,"223,869"
+2004,Potassium,JL,Muriate Of Potash-Granular,"471,592"
+2004,Potassium,JP,Potash,"596,376"
+2004,Potassium,LG,Langbeinite,"975,974"
+2004,Potassium,MG,Magnesium Chloride Brine,"207,073"
+2004,Potassium,MS,Manure Salts,"21,504"
+2004,Quartz,QB,Quartz Crystal,"8,812"
+2004,Sand & Gravel,SF,Sand/Gravel,"7,214,198"
+2004,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"283,712"
+2004,Silver,AG,Silver,0
+2004,Soda Ash,SJ,Soda Ash,"11,849,095"
+2004,Sodium,BH,Borax-Anhydrous,0
+2004,Sodium,BJ,Borax-Decahydrate,"89,537"
+2004,Sodium,BL,Borax-Pentahydrate,"85,900"
+2004,Sodium,BM,Boric Acid,"44,515"
+2004,Sodium,ND,Brine Barrels,"57,816"
+2004,Sodium,PP,Purge Liquor,"152,598"
+2004,Sodium,SA,Salt,"508,445"
+2004,Sodium,SB,Sodium Bi-Carbonate,"235,080"
+2004,Sodium,SN,Anhydrous Sodium Sulfate,"241,932"
+2004,Sodium,SP,Sodium Sesquicarbonate,"163,200"
+2004,Sodium,SR,Caustic,0
+2004,Sodium,TJ,Trona Ore,"103,823"
+2004,Sulfur,SS,Sulfur,0
+2004,Zinc,ZA,Zinc Concentrate,"112,685"
+2005,Cinders,CC,Cinders,"11,163"
+2005,Clay,CG,Clay,"62,138"
+2005,Coal,ED,Coal-Bituminous-Raw,"6,768"
+2005,Coal,EE,Coal,"589,627,336"
+2005,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2005,Cobalt,CL,Cobalt Concentrate,0
+2005,Copper,CH,Copper Concentrate,"54,191"
+2005,Copper,CU,Copper,"9,638,190"
+2005,Gilsonite,GF,Gilsonite,"8,041"
+2005,Gold,B0,Gold,43
+2005,Gypsum,GH,Gypsum,"826,876"
+2005,Lead,PC,Lead Concentrate,"442,528"
+2005,Limestone,PG,Limestone,"36,756"
+2005,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2005,Phosphate,FB,Ferro Phosphorous Slag,0
+2005,Phosphate,PK,Phosphate Raw Ore,"5,030,491"
+2005,Phosphate,PN,Potassium Sulphate-Standard,0
+2005,Potassium,JD,Muriate Of Potash-Standard,"569,132"
+2005,Potassium,JL,Muriate Of Potash-Granular,"509,918"
+2005,Potassium,JP,Potash,"578,763"
+2005,Potassium,LG,Langbeinite,"870,058"
+2005,Potassium,MG,Magnesium Chloride Brine,"124,747"
+2005,Potassium,MS,Manure Salts,"29,219"
+2005,Quartz,QB,Quartz Crystal,"8,065"
+2005,Sand & Gravel,SF,Sand/Gravel,"4,547,775"
+2005,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"291,960"
+2005,Silver,AG,Silver,0
+2005,Soda Ash,SJ,Soda Ash,"11,816,478"
+2005,Sodium,BH,Borax-Anhydrous,"6,345"
+2005,Sodium,BJ,Borax-Decahydrate,"74,927"
+2005,Sodium,BL,Borax-Pentahydrate,"93,441"
+2005,Sodium,BM,Boric Acid,"44,722"
+2005,Sodium,ND,Brine Barrels,"46,855"
+2005,Sodium,PP,Purge Liquor,"149,253"
+2005,Sodium,SA,Salt,"541,264"
+2005,Sodium,SB,Sodium Bi-Carbonate,"189,835"
+2005,Sodium,SN,Anhydrous Sodium Sulfate,"241,455"
+2005,Sodium,SP,Sodium Sesquicarbonate,"176,735"
+2005,Sodium,SR,Caustic,0
+2005,Sodium,SU,Sulfide,"22,487"
+2005,Sodium,TB,Sodium Bisulfite,"1,834"
+2005,Sodium,TD,Sodium Decahydrate,"4,775"
+2005,Sodium,TJ,Trona Ore,"130,265"
+2005,Sulfur,SS,Sulfur,0
+2005,Zinc,ZA,Zinc Concentrate,"100,996"
+2006,Cinders,CC,Cinders,"14,419"
+2006,Clay,CG,Clay,"84,876"
+2006,Coal,ED,Coal-Bituminous-Raw,"13,149"
+2006,Coal,EE,Coal,"624,532,467"
+2006,Coal,LT,Leonardite,"7,056"
+2006,Cobalt,CL,Cobalt Concentrate,0
+2006,Copper,CH,Copper Concentrate,"46,519"
+2006,Copper,CU,Copper,"10,235,642"
+2006,Gilsonite,GF,Gilsonite,"8,776"
+2006,Gold,B0,Gold,74
+2006,Gypsum,GH,Gypsum,"784,927"
+2006,Lead,PC,Lead Concentrate,"476,670"
+2006,Limestone,PG,Limestone,"68,941"
+2006,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2006,Phosphate,FB,Ferro Phosphorous Slag,0
+2006,Phosphate,PK,Phosphate Raw Ore,"5,396,099"
+2006,Phosphate,PN,Potassium Sulphate-Standard,0
+2006,Potassium,JD,Muriate Of Potash-Standard,"488,789"
+2006,Potassium,JL,Muriate Of Potash-Granular,"336,465"
+2006,Potassium,JP,Potash,"582,450"
+2006,Potassium,LG,Langbeinite,"964,985"
+2006,Potassium,MG,Magnesium Chloride Brine,"148,948"
+2006,Potassium,MS,Manure Salts,"21,623"
+2006,Potassium,SY,Sylvite-Raw Ore,"231,422"
+2006,Quartz,QB,Quartz Crystal,"6,350"
+2006,Sand & Gravel,BS,Borrow Sand & Gravel,"202,025"
+2006,Sand & Gravel,SF,Sand/Gravel,"3,117,650"
+2006,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"93,782"
+2006,Silver,AG,Silver,0
+2006,Soda Ash,SJ,Soda Ash,"11,825,841"
+2006,Sodium,BH,Borax-Anhydrous,0
+2006,Sodium,BJ,Borax-Decahydrate,"91,055"
+2006,Sodium,BL,Borax-Pentahydrate,"99,775"
+2006,Sodium,BM,Boric Acid,"45,591"
+2006,Sodium,ND,Brine Barrels,"178,503"
+2006,Sodium,PP,Purge Liquor,"165,573"
+2006,Sodium,SA,Salt,"621,145"
+2006,Sodium,SB,Sodium Bi-Carbonate,"194,870"
+2006,Sodium,SN,Anhydrous Sodium Sulfate,"228,236"
+2006,Sodium,SP,Sodium Sesquicarbonate,"177,433"
+2006,Sodium,SR,Caustic,0
+2006,Sodium,SU,Sulfide,"42,730"
+2006,Sodium,TB,Sodium Bisulfite,"3,872"
+2006,Sodium,TD,Sodium Decahydrate,"7,805"
+2006,Sodium,TJ,Trona Ore,"179,239"
+2006,Sulfur,SS,Sulfur,0
+2006,Zinc,ZA,Zinc Concentrate,"104,960"
+2007,Cinders,CC,Cinders,"10,440"
+2007,Clay,CG,Clay,"67,014"
+2007,Coal,ED,Coal-Bituminous-Raw,"11,391"
+2007,Coal,EE,Coal,"631,445,418"
+2007,Coal,LT,Leonardite,0
+2007,Cobalt,CL,Cobalt Concentrate,0
+2007,Copper,CH,Copper Concentrate,"237,385"
+2007,Copper,CU,Copper,"7,063,322"
+2007,Gilsonite,GF,Gilsonite,"10,879"
+2007,Gold,B0,Gold,40
+2007,Gypsum,GH,Gypsum,"656,873"
+2007,Lead,PC,Lead Concentrate,"461,119"
+2007,Limestone,PG,Limestone,"142,098"
+2007,Molybdenum Concentrate,MB,Molybdenum Concentrate,42
+2007,Phosphate,FB,Ferro Phosphorous Slag,0
+2007,Phosphate,PK,Phosphate Raw Ore,"5,467,944"
+2007,Potassium,JD,Muriate Of Potash-Standard,"261,430"
+2007,Potassium,JL,Muriate Of Potash-Granular,"436,159"
+2007,Potassium,JP,Potash,"543,617"
+2007,Potassium,LG,Langbeinite,"1,039,602"
+2007,Potassium,MG,Magnesium Chloride Brine,"139,902"
+2007,Potassium,MS,Manure Salts,"20,436"
+2007,Potassium,SY,Sylvite-Raw Ore,"225,872"
+2007,Quartz,QB,Quartz Crystal,"2,400"
+2007,Sand & Gravel,BS,Borrow Sand & Gravel,"31,427"
+2007,Sand & Gravel,SF,Sand/Gravel,"2,756,676"
+2007,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"45,192"
+2007,Silver,AG,Silver,0
+2007,Soda Ash,SJ,Soda Ash,"11,911,285"
+2007,Sodium,BH,Borax-Anhydrous,0
+2007,Sodium,BJ,Borax-Decahydrate,"92,419"
+2007,Sodium,BL,Borax-Pentahydrate,"103,596"
+2007,Sodium,BM,Boric Acid,"43,200"
+2007,Sodium,ND,Brine Barrels,"19,278"
+2007,Sodium,PP,Purge Liquor,"167,067"
+2007,Sodium,SA,Salt,"849,320"
+2007,Sodium,SB,Sodium Bi-Carbonate,"199,749"
+2007,Sodium,SN,Anhydrous Sodium Sulfate,"256,471"
+2007,Sodium,SP,Sodium Sesquicarbonate,"176,765"
+2007,Sodium,SR,Caustic,0
+2007,Sodium,SU,Sulfide,"44,402"
+2007,Sodium,TB,Sodium Bisulfite,"2,851"
+2007,Sodium,TD,Sodium Decahydrate,0
+2007,Sodium,TJ,Trona Ore,"232,027"
+2007,Sulfur,SS,Sulfur,0
+2007,Wavellite,WA,Wavellite,280
+2007,Zinc,ZA,Zinc Concentrate,"98,151"
+2008,Cinders,CC,Cinders,"3,760"
+2008,Clay,CG,Clay,"25,139"
+2008,Coal,ED,Coal-Bituminous-Raw,"9,811"
+2008,Coal,EE,Coal,"646,410,766"
+2008,Coal,LT,Leonardite,"4,858"
+2008,Cobalt,CL,Cobalt Concentrate,0
+2008,Copper,CH,Copper Concentrate,"325,362"
+2008,Copper,CU,Copper,"3,766,298"
+2008,Gilsonite,GF,Gilsonite,"16,957"
+2008,Gold,AP,Gold Placer,SENSITIVE
+2008,Gold,B0,Gold,7
+2008,Gypsum,GH,Gypsum,"583,651"
+2008,Lead,PC,Lead Concentrate,"403,319"
+2008,Limestone,PG,Limestone,"186,517"
+2008,Molybdenum Concentrate,MB,Molybdenum Concentrate,301
+2008,Phosphate,FB,Ferro Phosphorous Slag,0
+2008,Phosphate,PK,Phosphate Raw Ore,"5,670,198"
+2008,Potassium,JD,Muriate Of Potash-Standard,"226,487"
+2008,Potassium,JL,Muriate Of Potash-Granular,"428,713"
+2008,Potassium,JP,Potash,"444,528"
+2008,Potassium,LG,Langbeinite,"1,039,233"
+2008,Potassium,MG,Magnesium Chloride Brine,"196,557"
+2008,Potassium,MS,Manure Salts,"11,240"
+2008,Potassium,SY,Sylvite-Raw Ore,"536,036"
+2008,Quartz,QB,Quartz Crystal,"11,300"
+2008,Sand & Gravel,SF,Sand/Gravel,"2,873,728"
+2008,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"10,580"
+2008,Silver,AG,Silver,0
+2008,Soda Ash,SJ,Soda Ash,"11,999,465"
+2008,Sodium,BH,Borax-Anhydrous,0
+2008,Sodium,BJ,Borax-Decahydrate,"88,652"
+2008,Sodium,BL,Borax-Pentahydrate,"109,758"
+2008,Sodium,BM,Boric Acid,"44,820"
+2008,Sodium,ND,Brine Barrels,"59,146"
+2008,Sodium,PP,Purge Liquor,"156,451"
+2008,Sodium,SA,Salt,"774,388"
+2008,Sodium,SB,Sodium Bi-Carbonate,"209,259"
+2008,Sodium,SN,Anhydrous Sodium Sulfate,"252,099"
+2008,Sodium,SP,Sodium Sesquicarbonate,"195,010"
+2008,Sodium,SR,Caustic,0
+2008,Sodium,SU,Sulfide,"43,741"
+2008,Sodium,TB,Sodium Bisulfite,"3,073"
+2008,Sodium,TD,Sodium Decahydrate,0
+2008,Sodium,TJ,Trona Ore,"244,703"
+2008,Sulfur,SS,Sulfur,0
+2008,Wavellite,WA,Wavellite,"1,110"
+2008,Zinc,ZA,Zinc Concentrate,"88,749"
+2009,Cinders,CC,Cinders,"7,033"
+2009,Clay,CG,Clay,"7,021"
+2009,Coal,ED,Coal-Bituminous-Raw,"7,176"
+2009,Coal,EE,Coal,"596,309,654"
+2009,Coal,EW,Coal Waste (Sub-Econ),SENSITIVE
+2009,Coal,LT,Leonardite,"7,550"
+2009,Cobalt,CL,Cobalt Concentrate,0
+2009,Copper,CH,Copper Concentrate,"616,469"
+2009,Copper,CU,Copper,0
+2009,Gilsonite,GF,Gilsonite,"13,016"
+2009,Gold,AP,Gold Placer,210
+2009,Gold,AV,Gold Ore,7
+2009,Gold,B0,Gold,7
+2009,Gypsum,GH,Gypsum,"472,989"
+2009,Lead,PC,Lead Concentrate,"361,412"
+2009,Limestone,PG,Limestone,"182,432"
+2009,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2009,Phosphate,FB,Ferro Phosphorous Slag,0
+2009,Phosphate,PK,Phosphate Raw Ore,"4,613,496"
+2009,Potassium,JD,Muriate Of Potash-Standard,"131,442"
+2009,Potassium,JL,Muriate Of Potash-Granular,"247,924"
+2009,Potassium,JP,Potash,"366,446"
+2009,Potassium,LG,Langbeinite,"677,919"
+2009,Potassium,MG,Magnesium Chloride Brine,"197,435"
+2009,Potassium,MS,Manure Salts,"1,412"
+2009,Potassium,SY,Sylvite-Raw Ore,"352,609"
+2009,Quartz,QB,Quartz Crystal,"1,595"
+2009,Sand & Gravel,SF,Sand/Gravel,"1,357,430"
+2009,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"8,660"
+2009,Silver,AG,Silver,0
+2009,Soda Ash,SJ,Soda Ash,"10,053,915"
+2009,Sodium,BH,Borax-Anhydrous,0
+2009,Sodium,BJ,Borax-Decahydrate,"64,613"
+2009,Sodium,BL,Borax-Pentahydrate,"114,863"
+2009,Sodium,BM,Boric Acid,"43,293"
+2009,Sodium,ND,Brine Barrels,0
+2009,Sodium,PP,Purge Liquor,"156,529"
+2009,Sodium,SA,Salt,"789,071"
+2009,Sodium,SB,Sodium Bi-Carbonate,"201,981"
+2009,Sodium,SN,Anhydrous Sodium Sulfate,"215,909"
+2009,Sodium,SP,Sodium Sesquicarbonate,"190,303"
+2009,Sodium,SR,Caustic,0
+2009,Sodium,SU,Sulfide,"58,293"
+2009,Sodium,TB,Sodium Bisulfite,"1,785"
+2009,Sodium,TD,Sodium Decahydrate,0
+2009,Sodium,TJ,Trona Ore,"282,407"
+2009,Sulfur,SS,Sulfur,0
+2009,Wavellite,WA,Wavellite,0
+2009,Zinc,ZA,Zinc Concentrate,"90,527"
+2010,Cinders,CC,Cinders,"7,199"
+2010,Clay,CG,Clay,"17,180"
+2010,Coal,ED,Coal-Bituminous-Raw,"5,807"
+2010,Coal,EE,Coal,"598,230,046"
+2010,Coal,EW,Coal Waste (Sub-Econ),SENSITIVE
+2010,Coal,LT,Leonardite,"11,842"
+2010,Cobalt,CL,Cobalt Concentrate,0
+2010,Copper,CH,Copper Concentrate,"329,174"
+2010,Copper,CU,Copper,0
+2010,Gilsonite,GF,Gilsonite,"28,082"
+2010,Gold,AP,Gold Placer,122
+2010,Gold,AV,Gold Ore,0
+2010,Gold,B0,Gold,0
+2010,Gypsum,GH,Gypsum,"341,619"
+2010,Lead,PC,Lead Concentrate,"341,020"
+2010,Limestone,PG,Limestone,"158,266"
+2010,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2010,Phosphate,FB,Ferro Phosphorous Slag,0
+2010,Phosphate,PK,Phosphate Raw Ore,"6,160,417"
+2010,Potassium,JD,Muriate Of Potash-Standard,"202,415"
+2010,Potassium,JL,Muriate Of Potash-Granular,"397,581"
+2010,Potassium,JP,Potash,"408,687"
+2010,Potassium,LG,Langbeinite,"999,619"
+2010,Potassium,MG,Magnesium Chloride Brine,"239,207"
+2010,Potassium,MS,Manure Salts,"2,085"
+2010,Potassium,SY,Sylvite-Raw Ore,"399,714"
+2010,Quartz,QB,Quartz Crystal,"1,000"
+2010,Sand & Gravel,SF,Sand/Gravel,"1,188,965"
+2010,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"9,120"
+2010,Silver,AG,Silver,0
+2010,Soda Ash,SJ,Soda Ash,"10,816,907"
+2010,Sodium,BH,Borax-Anhydrous,0
+2010,Sodium,BJ,Borax-Decahydrate,"70,408"
+2010,Sodium,BL,Borax-Pentahydrate,"117,052"
+2010,Sodium,BM,Boric Acid,"40,978"
+2010,Sodium,ND,Brine Barrels,"2,936"
+2010,Sodium,PP,Purge Liquor,"187,752"
+2010,Sodium,SA,Salt,"939,902"
+2010,Sodium,SB,Sodium Bi-Carbonate,"244,678"
+2010,Sodium,SN,Anhydrous Sodium Sulfate,"240,174"
+2010,Sodium,SP,Sodium Sesquicarbonate,"174,888"
+2010,Sodium,SR,Caustic,0
+2010,Sodium,SU,Sulfide,"54,304"
+2010,Sodium,TB,Sodium Bisulfite,"1,430"
+2010,Sodium,TD,Sodium Decahydrate,0
+2010,Sodium,TJ,Trona Ore,"306,407"
+2010,Sulfur,SS,Sulfur,0
+2010,Wavellite,WA,Wavellite,0
+2010,Zinc,ZA,Zinc Concentrate,"80,206"
+2011,Cinders,CC,Cinders,"9,736"
+2011,Clay,CG,Clay,"29,656"
+2011,Coal,ED,Coal-Bituminous-Raw,"5,873"
+2011,Coal,EE,Coal,"601,614,987"
+2011,Coal,LT,Leonardite,"11,815"
+2011,Cobalt,CL,Cobalt Concentrate,0
+2011,Copper,CH,Copper Concentrate,"228,098"
+2011,Copper,CU,Copper,0
+2011,Gilsonite,GF,Gilsonite,"22,568"
+2011,Gold,AP,Gold Placer,20
+2011,Gold,AV,Gold Ore,10
+2011,Gold,B0,Gold,3
+2011,Gypsum,GH,Gypsum,"313,397"
+2011,Lead,PC,Lead Concentrate,"372,635"
+2011,Limestone,PG,Limestone,"174,574"
+2011,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2011,Phosphate,FB,Ferro Phosphorous Slag,0
+2011,Phosphate,PK,Phosphate Raw Ore,"7,105,485"
+2011,Potassium,JD,Muriate Of Potash-Standard,"195,137"
+2011,Potassium,JL,Muriate Of Potash-Granular,"466,263"
+2011,Potassium,JP,Potash,"447,247"
+2011,Potassium,LG,Langbeinite,"901,191"
+2011,Potassium,MG,Magnesium Chloride Brine,"261,643"
+2011,Potassium,MS,Manure Salts,"2,446"
+2011,Potassium,SY,Sylvite-Raw Ore,"525,897"
+2011,Quartz,QB,Quartz Crystal,0
+2011,Sand & Gravel,SF,Sand/Gravel,"1,590,175"
+2011,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"9,600"
+2011,Silver,AG,Silver,0
+2011,Soda Ash,SJ,Soda Ash,"8,919,865"
+2011,Sodium,BH,Borax-Anhydrous,"2,219"
+2011,Sodium,BJ,Borax-Decahydrate,"79,447"
+2011,Sodium,BL,Borax-Pentahydrate,"100,442"
+2011,Sodium,BM,Boric Acid,"44,346"
+2011,Sodium,ND,Brine Barrels,0
+2011,Sodium,PP,Purge Liquor,"117,184"
+2011,Sodium,SA,Salt,"1,030,229"
+2011,Sodium,SB,Sodium Bi-Carbonate,"215,005"
+2011,Sodium,SN,Anhydrous Sodium Sulfate,"242,853"
+2011,Sodium,SP,Sodium Sesquicarbonate,"41,885"
+2011,Sodium,SR,Caustic,0
+2011,Sodium,SU,Sulfide,"62,950"
+2011,Sodium,TB,Sodium Bisulfite,"2,120"
+2011,Sodium,TD,Sodium Decahydrate,0
+2011,Sodium,TJ,Trona Ore,"302,838"
+2011,Sulfur,SS,Sulfur,0
+2011,Wavellite,WA,Wavellite,0
+2011,Zinc,ZA,Zinc Concentrate,"86,824"
+2012,Cinders,CC,Cinders,"4,161"
+2012,Clay,CG,Clay,"22,739"
+2012,Coal,ED,Coal-Bituminous-Raw,"5,572"
+2012,Coal,EE,Coal,"561,737,276"
+2012,Coal,EF,Coal-Lignite-Processed,0
+2012,Coal,EG,Coal-Lignite-Raw,0
+2012,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2012,Coal,LT,Leonardite,"7,316"
+2012,Cobalt,CL,Cobalt Concentrate,0
+2012,Copper,CH,Copper Concentrate,"46,338"
+2012,Copper,CU,Copper,0
+2012,Gilsonite,GF,Gilsonite,"35,927"
+2012,Gold,AP,Gold Placer,0
+2012,Gold,AV,Gold Ore,0
+2012,Gold,B0,Gold,0
+2012,Gypsum,GH,Gypsum,"314,751"
+2012,Lead,PC,Lead Concentrate,"352,471"
+2012,Limestone,PG,Limestone,"137,956"
+2012,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2012,Phosphate,PK,Phosphate Raw Ore,"8,047,020"
+2012,Potassium,JD,Muriate Of Potash-Standard,"156,495"
+2012,Potassium,JL,Muriate Of Potash-Granular,"429,286"
+2012,Potassium,JP,Potash,"322,530"
+2012,Potassium,LG,Langbeinite,"931,209"
+2012,Potassium,MG,Magnesium Chloride Brine,"249,326"
+2012,Potassium,MS,Manure Salts,"1,614"
+2012,Potassium,SY,Sylvite-Raw Ore,"158,500"
+2012,Quartz,QB,Quartz Crystal,0
+2012,Sand & Gravel,SF,Sand/Gravel,"1,605,401"
+2012,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"5,680"
+2012,Silver,AG,Silver,0
+2012,Soda Ash,SJ,Soda Ash,"11,863,353"
+2012,Sodium,BH,Borax-Anhydrous,0
+2012,Sodium,BJ,Borax-Decahydrate,"76,790"
+2012,Sodium,BL,Borax-Pentahydrate,"95,295"
+2012,Sodium,BM,Boric Acid,"39,342"
+2012,Sodium,ND,Brine Barrels,0
+2012,Sodium,PP,Purge Liquor,"169,309"
+2012,Sodium,SA,Salt,"916,990"
+2012,Sodium,SB,Sodium Bi-Carbonate,"332,264"
+2012,Sodium,SN,Anhydrous Sodium Sulfate,"201,580"
+2012,Sodium,SP,Sodium Sesquicarbonate,"218,405"
+2012,Sodium,SR,Caustic,0
+2012,Sodium,SU,Sulfide,"63,905"
+2012,Sodium,TB,Sodium Bisulfite,151
+2012,Sodium,TD,Sodium Decahydrate,0
+2012,Sodium,TJ,Trona Ore,"274,201"
+2012,Sulfur,SS,Sulfur,0
+2012,Zinc,ZA,Zinc Concentrate,"72,940"
+2013,Cinders,CC,Cinders,"10,582"
+2013,Clay,CG,Clay,"33,056"
+2013,Coal,ED,Coal-Bituminous-Raw,"6,861"
+2013,Coal,EE,Coal,"542,736,434"
+2013,Coal,EF,Coal-Lignite-Processed,0
+2013,Coal,EG,Coal-Lignite-Raw,0
+2013,Coal,LT,Leonardite,"10,666"
+2013,Cobalt,CL,Cobalt Concentrate,0
+2013,Copper,CH,Copper Concentrate,"27,195"
+2013,Copper,CU,Copper,0
+2013,Gilsonite,GF,Gilsonite,"24,919"
+2013,Gold,AP,Gold Placer,0
+2013,Gold,AV,Gold Ore,0
+2013,Gold,B0,Gold,0
+2013,Gypsum,GH,Gypsum,"320,354"
+2013,Lead,PC,Lead Concentrate,"311,586"
+2013,Limestone,PG,Limestone,"71,696"
+2013,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2013,Phosphate,FB,Ferro Phosphorous Slag,SENSITIVE
+2013,Phosphate,PK,Phosphate Raw Ore,"7,215,048"
+2013,Potassium,JD,Muriate Of Potash-Standard,"189,684"
+2013,Potassium,JL,Muriate Of Potash-Granular,"382,925"
+2013,Potassium,JP,Potash,"426,396"
+2013,Potassium,LG,Langbeinite,"969,559"
+2013,Potassium,MG,Magnesium Chloride Brine,"217,353"
+2013,Potassium,MS,Manure Salts,0
+2013,Potassium,SY,Sylvite-Raw Ore,"171,599"
+2013,Quartz,QB,Quartz Crystal,0
+2013,Sand & Gravel,SF,Sand/Gravel,"1,237,106"
+2013,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"8,060"
+2013,Silver,AG,Silver,1
+2013,Soda Ash,SJ,Soda Ash,"12,280,497"
+2013,Sodium,BH,Borax-Anhydrous,0
+2013,Sodium,BJ,Borax-Decahydrate,"66,427"
+2013,Sodium,BL,Borax-Pentahydrate,"116,355"
+2013,Sodium,BM,Boric Acid,"42,440"
+2013,Sodium,ND,Brine Barrels,0
+2013,Sodium,PP,Purge Liquor,"196,712"
+2013,Sodium,SA,Salt,"1,051,439"
+2013,Sodium,SB,Sodium Bi-Carbonate,"343,613"
+2013,Sodium,SN,Anhydrous Sodium Sulfate,"231,886"
+2013,Sodium,SP,Sodium Sesquicarbonate,"240,135"
+2013,Sodium,SR,Caustic,0
+2013,Sodium,SU,Sulfide,"62,579"
+2013,Sodium,TB,Sodium Bisulfite,0
+2013,Sodium,TD,Sodium Decahydrate,0
+2013,Sodium,TJ,Trona Ore,"263,036"
+2013,Sulfur,SS,Sulfur,0
+2013,Zinc,ZA,Zinc Concentrate,"85,021"
+2014,Cinders,CC,Cinders,"2,857"
+2014,Clay,CG,Clay,"33,520"
+2014,Coal,ED,Coal-Bituminous-Raw,"2,194"
+2014,Coal,EE,Coal,"555,614,119"
+2014,Coal,EF,Coal-Lignite-Processed,0
+2014,Coal,EG,Coal-Lignite-Raw,0
+2014,Coal,EW,Coal Waste (Sub-Econ),SENSITIVE
+2014,Coal,LT,Leonardite,"6,446"
+2014,Cobalt,CL,Cobalt Concentrate,0
+2014,Copper,CH,Copper Concentrate,"31,673"
+2014,Copper,CU,Copper,0
+2014,Gilsonite,GF,Gilsonite,"28,936"
+2014,Gold,AP,Gold Placer,0
+2014,Gold,AV,Gold Ore,0
+2014,Gypsum,GH,Gypsum,"221,951"
+2014,Lead,PC,Lead Concentrate,"298,075"
+2014,Limestone,PG,Limestone,"22,598"
+2014,Molybdenum Concentrate,MB,Molybdenum Concentrate,24
+2014,Phosphate,PK,Phosphate Raw Ore,"5,813,811"
+2014,Potassium,JD,Muriate Of Potash-Standard,"190,483"
+2014,Potassium,JL,Muriate Of Potash-Granular,"511,130"
+2014,Potassium,JP,Potash,"327,428"
+2014,Potassium,LG,Langbeinite,"552,669"
+2014,Potassium,MG,Magnesium Chloride Brine,"182,528"
+2014,Potassium,MS,Manure Salts,0
+2014,Potassium,SY,Sylvite-Raw Ore,"449,740"
+2014,Quartz,QB,Quartz Crystal,960
+2014,Sand & Gravel,SF,Sand/Gravel,"1,416,806"
+2014,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"8,236"
+2014,Soda Ash,SJ,Soda Ash,"12,400,612"
+2014,Sodium,BH,Borax-Anhydrous,0
+2014,Sodium,BJ,Borax-Decahydrate,"77,122"
+2014,Sodium,BL,Borax-Pentahydrate,"115,693"
+2014,Sodium,BM,Boric Acid,"41,329"
+2014,Sodium,PP,Purge Liquor,"187,539"
+2014,Sodium,SA,Salt,"1,052,045"
+2014,Sodium,SB,Sodium Bi-Carbonate,"407,840"
+2014,Sodium,SN,Anhydrous Sodium Sulfate,"220,973"
+2014,Sodium,SP,Sodium Sesquicarbonate,"265,228"
+2014,Sodium,SR,Caustic,0
+2014,Sodium,SU,Sulfide,"59,453"
+2014,Sodium,TB,Sodium Bisulfite,0
+2014,Sodium,TD,Sodium Decahydrate,0
+2014,Sodium,TJ,Trona Ore,"236,259"
+2014,Sulfur,SS,Sulfur,0
+2014,Zinc,ZA,Zinc Concentrate,"76,409"
+2015,Cinders,CC,Cinders,"9,195"
+2015,Clay,CG,Clay,"51,791"
+2015,Coal,EE,Coal,"513,950,132"
+2015,Coal,EF,Coal-Lignite-Processed,0
+2015,Coal,EG,Coal-Lignite-Raw,0
+2015,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2015,Coal,EW,Coal Waste (Sub-Econ),0
+2015,Coal,LT,Leonardite,"9,375"
+2015,Cobalt,CL,Cobalt Concentrate,0
+2015,Copper,CH,Copper Concentrate,"29,322"
+2015,Copper,CU,Copper,0
+2015,Gilsonite,GF,Gilsonite,"16,078"
+2015,Gold,AP,Gold Placer,0
+2015,Gold,AV,Gold Ore,1
+2015,Gypsum,GH,Gypsum,"329,829"
+2015,Lead,PC,Lead Concentrate,"248,806"
+2015,Limestone,PG,Limestone,"7,632"
+2015,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2015,Phosphate,PK,Phosphate Raw Ore,"5,935,919"
+2015,Potassium,JD,Muriate Of Potash-Standard,"141,196"
+2015,Potassium,JL,Muriate Of Potash-Granular,"464,559"
+2015,Potassium,JP,Potash,"74,062"
+2015,Potassium,LG,Langbeinite,"875,739"
+2015,Potassium,MG,Magnesium Chloride Brine,"197,432"
+2015,Potassium,MS,Manure Salts,0
+2015,Potassium,SY,Sylvite-Raw Ore,"330,910"
+2015,Quartz,QB,Quartz Crystal,"4,701"
+2015,Sand & Gravel,SF,Sand/Gravel,"918,844"
+2015,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"4,584"
+2015,Soda Ash,SJ,Soda Ash,"12,283,247"
+2015,Sodium,BH,Borax-Anhydrous,0
+2015,Sodium,BJ,Borax-Decahydrate,"71,007"
+2015,Sodium,BL,Borax-Pentahydrate,"118,755"
+2015,Sodium,BM,Boric Acid,"42,514"
+2015,Sodium,PP,Purge Liquor,"185,470"
+2015,Sodium,SA,Salt,"986,608"
+2015,Sodium,SB,Sodium Bi-Carbonate,"405,505"
+2015,Sodium,SN,Anhydrous Sodium Sulfate,"219,433"
+2015,Sodium,SP,Sodium Sesquicarbonate,"280,337"
+2015,Sodium,SR,Caustic,0
+2015,Sodium,SU,Sulfide,"33,598"
+2015,Sodium,TB,Sodium Bisulfite,0
+2015,Sodium,TD,Sodium Decahydrate,0
+2015,Sodium,TJ,Trona Ore,"286,547"
+2015,Sulfur,SS,Sulfur,0
+2015,Zinc,ZA,Zinc Concentrate,"54,457"
+2016,Clay,CG,Clay,"58,076"
+2016,Coal,EE,Coal,"414,042,727"
+2016,Coal,EF,Coal-Lignite-Processed,0
+2016,Coal,EG,Coal-Lignite-Raw,0
+2016,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2016,Coal,EW,Coal Waste (Sub-Econ),0
+2016,Coal,LT,Leonardite,"3,551"
+2016,Cobalt,CL,Cobalt Concentrate,0
+2016,Copper,CH,Copper Concentrate,"28,693"
+2016,Copper,CU,Copper,0
+2016,Gilsonite,GF,Gilsonite,"12,809"
+2016,Gold,AP,Gold Placer,0
+2016,Gold,AV,Gold Ore,0
+2016,Gypsum,GH,Gypsum,"396,229"
+2016,Humate,HU,Humate,"20,678"
+2016,Lead,PC,Lead Concentrate,"188,847"
+2016,Limestone,PG,Limestone,0
+2016,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2016,Phosphate,FB,Ferro Phosphorous Slag,0
+2016,Phosphate,PK,Phosphate Raw Ore,"8,014,212"
+2016,Potassium,JD,Muriate Of Potash-Standard,"103,661"
+2016,Potassium,JL,Muriate Of Potash-Granular,"263,488"
+2016,Potassium,JP,Potash,"50,937"
+2016,Potassium,LG,Langbeinite,"813,983"
+2016,Potassium,MG,Magnesium Chloride Brine,"215,051"
+2016,Potassium,MS,Manure Salts,0
+2016,Potassium,SY,Sylvite-Raw Ore,"212,682"
+2016,Quartz,QB,Quartz Crystal,"4,960"
+2016,Sand & Gravel,SF,Sand/Gravel,"1,850,232"
+2016,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"6,824"
+2016,Soda Ash,SJ,Soda Ash,"12,578,495"
+2016,Sodium,BH,Borax-Anhydrous,0
+2016,Sodium,BJ,Borax-Decahydrate,"67,343"
+2016,Sodium,BL,Borax-Pentahydrate,"132,385"
+2016,Sodium,BM,Boric Acid,"40,960"
+2016,Sodium,CA,Calcium Chloride,"1,253"
+2016,Sodium,PP,Purge Liquor,"161,910"
+2016,Sodium,SA,Salt,"909,446"
+2016,Sodium,SB,Sodium Bi-Carbonate,"444,330"
+2016,Sodium,SN,Anhydrous Sodium Sulfate,"243,915"
+2016,Sodium,SP,Sodium Sesquicarbonate,"266,920"
+2016,Sodium,SR,Caustic,0
+2016,Sodium,SU,Sulfide,"32,582"
+2016,Sodium,TB,Sodium Bisulfite,0
+2016,Sodium,TD,Sodium Decahydrate,0
+2016,Sodium,TJ,Trona Ore,"294,894"
+2016,Sulfur,SS,Sulfur,0
+2016,Zinc,ZA,Zinc Concentrate,"36,457"
+2017,Clay,CG,Clay,"90,134"
+2017,Coal,EE,Coal,"440,401,039"
+2017,Coal,EF,Coal-Lignite-Processed,0
+2017,Coal,EG,Coal-Lignite-Raw,0
+2017,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2017,Coal,EW,Coal Waste (Sub-Econ),0
+2017,Coal,LT,Leonardite,"4,300"
+2017,Cobalt,CL,Cobalt Concentrate,0
+2017,Copper,CH,Copper Concentrate,"25,913"
+2017,Copper,CU,Copper,0
+2017,Gilsonite,GF,Gilsonite,"12,881"
+2017,Gold,AP,Gold Placer,0
+2017,Gold,AV,Gold Ore,0
+2017,Gypsum,GH,Gypsum,"432,684"
+2017,Humate,HU,Humate,"21,769"
+2017,Lead,PC,Lead Concentrate,"167,284"
+2017,Limestone,PG,Limestone,0
+2017,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2017,Phosphate,FB,Ferro Phosphorous Slag,0
+2017,Phosphate,PK,Phosphate Raw Ore,"7,770,797"
+2017,Potassium,JD,Muriate Of Potash-Standard,"64,657"
+2017,Potassium,JL,Muriate Of Potash-Granular,"113,556"
+2017,Potassium,JP,Potash,"78,499"
+2017,Potassium,LG,Langbeinite,"896,624"
+2017,Potassium,MG,Magnesium Chloride Brine,"173,757"
+2017,Potassium,MS,Manure Salts,0
+2017,Potassium,SY,Sylvite-Raw Ore,0
+2017,Quartz,QB,Quartz Crystal,"12,281"
+2017,Sand & Gravel,SF,Sand/Gravel,"942,239"
+2017,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"4,936"
+2017,Soda Ash,SJ,Soda Ash,"12,705,808"
+2017,Sodium,BH,Borax-Anhydrous,0
+2017,Sodium,BJ,Borax-Decahydrate,"63,266"
+2017,Sodium,BL,Borax-Pentahydrate,"132,055"
+2017,Sodium,BM,Boric Acid,"47,960"
+2017,Sodium,CA,Calcium Chloride,0
+2017,Sodium,PP,Purge Liquor,"160,917"
+2017,Sodium,SA,Salt,"1,248,637"
+2017,Sodium,SB,Sodium Bi-Carbonate,"453,787"
+2017,Sodium,SN,Anhydrous Sodium Sulfate,"240,942"
+2017,Sodium,SP,Sodium Sesquicarbonate,"290,867"
+2017,Sodium,SR,Caustic,0
+2017,Sodium,SU,Sulfide,"25,668"
+2017,Sodium,TB,Sodium Bisulfite,0
+2017,Sodium,TD,Sodium Decahydrate,0
+2017,Sodium,TJ,Trona Ore,"347,615"
+2017,Zinc,ZA,Zinc Concentrate,"36,861"
+2018,Clay,CG,Clay,"72,619"
+2018,Coal,EE,Coal,"415,460,392"
+2018,Coal,EF,Coal-Lignite-Processed,0
+2018,Coal,EG,Coal-Lignite-Raw,0
+2018,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2018,Coal,EW,Coal Waste (Sub-Econ),0
+2018,Coal,LT,Leonardite,"5,630"
+2018,Cobalt,CL,Cobalt Concentrate,0
+2018,Copper,CH,Copper Concentrate,"19,726"
+2018,Copper,CU,Copper,0
+2018,Gilsonite,GF,Gilsonite,"19,371"
+2018,Gold,AP,Gold Placer,0
+2018,Gold,AV,Gold Ore,0
+2018,Gypsum,GH,Gypsum,"365,123"
+2018,Humate,HU,Humate,"26,793"
+2018,Lead,PC,Lead Concentrate,"162,940"
+2018,Limestone,PG,Limestone,"12,810"
+2018,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2018,Phosphate,FB,Ferro Phosphorous Slag,0
+2018,Phosphate,PK,Phosphate Raw Ore,"9,205,678"
+2018,Potassium,JD,Muriate Of Potash-Standard,"66,381"
+2018,Potassium,JL,Muriate Of Potash-Granular,"96,018"
+2018,Potassium,JP,Potash,"94,340"
+2018,Potassium,LG,Langbeinite,"915,035"
+2018,Potassium,MG,Magnesium Chloride Brine,"202,136"
+2018,Potassium,MS,Manure Salts,0
+2018,Potassium,SY,Sylvite-Raw Ore,SENSITIVE
+2018,Quartz,QB,Quartz Crystal,"8,458"
+2018,Sand & Gravel,SF,Sand/Gravel,"756,157"
+2018,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"4,424"
+2018,Soda Ash,SJ,Soda Ash,"12,539,523"
+2018,Sodium,BH,Borax-Anhydrous,0
+2018,Sodium,BJ,Borax-Decahydrate,"68,374"
+2018,Sodium,BL,Borax-Pentahydrate,"133,663"
+2018,Sodium,BM,Boric Acid,"41,796"
+2018,Sodium,CA,Calcium Chloride,0
+2018,Sodium,PP,Purge Liquor,"163,909"
+2018,Sodium,SA,Salt,"1,790,525"
+2018,Sodium,SB,Sodium Bi-Carbonate,"420,610"
+2018,Sodium,SN,Anhydrous Sodium Sulfate,"238,852"
+2018,Sodium,SP,Sodium Sesquicarbonate,"313,972"
+2018,Sodium,SR,Caustic,0
+2018,Sodium,SU,Sulfide,"32,535"
+2018,Sodium,TB,Sodium Bisulfite,0
+2018,Sodium,TD,Sodium Decahydrate,0
+2018,Sodium,TJ,Trona Ore,"368,868"
+2018,Zinc,ZA,Zinc Concentrate,"37,142"
+2019,Clay,CG,Clay,"50,674"
+2019,Coal,EE,Coal,"373,393,505"
+2019,Coal,EF,Coal-Lignite-Processed,0
+2019,Coal,EG,Coal-Lignite-Raw,0
+2019,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2019,Coal,EW,Coal Waste (Sub-Econ),0
+2019,Coal,LT,Leonardite,"6,997"
+2019,Cobalt,CL,Cobalt Concentrate,0
+2019,Copper,CH,Copper Concentrate,"16,257"
+2019,Copper,CU,Copper,0
+2019,Gilsonite,GF,Gilsonite,"23,010"
+2019,Gold,AP,Gold Placer,432
+2019,Gold,AV,Gold Ore,0
+2019,Gypsum,GH,Gypsum,"445,246"
+2019,Humate,HU,Humate,"23,707"
+2019,Lead,PC,Lead Concentrate,"165,078"
+2019,Limestone,PG,Limestone,"49,884"
+2019,Mine Water,TW,Mine Water,"7,274"
+2019,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2019,Phosphate,FB,Ferro Phosphorous Slag,0
+2019,Phosphate,PK,Phosphate Raw Ore,"7,340,607"
+2019,Potassium,JD,Muriate Of Potash-Standard,"60,198"
+2019,Potassium,JL,Muriate Of Potash-Granular,"98,261"
+2019,Potassium,JP,Potash,"77,070"
+2019,Potassium,LG,Langbeinite,"920,944"
+2019,Potassium,MG,Magnesium Chloride Brine,"119,794"
+2019,Potassium,MS,Manure Salts,0
+2019,Quartz,QB,Quartz Crystal,"7,088"
+2019,Sand & Gravel,BS,Borrow Sand & Gravel,"144,000"
+2019,Sand & Gravel,SF,Sand/Gravel,"1,306,061"
+2019,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"4,688"
+2019,Soda Ash,SJ,Soda Ash,"12,459,698"
+2019,Sodium,BH,Borax-Anhydrous,0
+2019,Sodium,BJ,Borax-Decahydrate,"39,142"
+2019,Sodium,BL,Borax-Pentahydrate,"108,793"
+2019,Sodium,BM,Boric Acid,"40,816"
+2019,Sodium,CA,Calcium Chloride,0
+2019,Sodium,PP,Purge Liquor,"124,691"
+2019,Sodium,SA,Salt,"2,297,974"
+2019,Sodium,SB,Sodium Bi-Carbonate,"427,925"
+2019,Sodium,SN,Anhydrous Sodium Sulfate,"186,441"
+2019,Sodium,SP,Sodium Sesquicarbonate,"328,829"
+2019,Sodium,SR,Caustic,0
+2019,Sodium,SU,Sulfide,"23,448"
+2019,Sodium,TB,Sodium Bisulfite,0
+2019,Sodium,TD,Sodium Decahydrate,0
+2019,Sodium,TJ,Trona Ore,"284,976"
+2019,Zinc,ZA,Zinc Concentrate,"32,089"
+2020,Clay,CG,Clay,"67,385"
+2020,Coal,EE,Coal,"286,920,851"
+2020,Coal,EF,Coal-Lignite-Processed,0
+2020,Coal,EG,Coal-Lignite-Raw,0
+2020,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2020,Coal,ES,Coal Fines,89
+2020,Coal,EW,Coal Waste (Sub-Econ),0
+2020,Coal,LT,Leonardite,"7,485"
+2020,Cobalt,CL,Cobalt Concentrate,0
+2020,Copper,CH,Copper Concentrate,"20,041"
+2020,Copper,CU,Copper,0
+2020,Gilsonite,GF,Gilsonite,"8,838"
+2020,Gold,AP,Gold Placer,0
+2020,Gold,AV,Gold Ore,0
+2020,Gypsum,GH,Gypsum,"490,834"
+2020,Humate,HU,Humate,"26,508"
+2020,Lead,PC,Lead Concentrate,"197,630"
+2020,Limestone,PG,Limestone,"16,689"
+2020,Mine Water,TW,Mine Water,"28,092"
+2020,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2020,Phosphate,FB,Ferro Phosphorous Slag,0
+2020,Phosphate,PK,Phosphate Raw Ore,"5,678,229"
+2020,Phosphate,PN,Potassium Sulphate-Standard,"12,207"
+2020,Potassium,JD,Muriate Of Potash-Standard,"72,421"
+2020,Potassium,JL,Muriate Of Potash-Granular,"75,615"
+2020,Potassium,JP,Potash,"59,424"
+2020,Potassium,LG,Langbeinite,"903,726"
+2020,Potassium,MG,Magnesium Chloride Brine,"131,878"
+2020,Potassium,MS,Manure Salts,0
+2020,Quartz,QB,Quartz Crystal,"1,542"
+2020,Sand & Gravel,BS,Borrow Sand & Gravel,"1,991"
+2020,Sand & Gravel,SF,Sand/Gravel,"923,043"
+2020,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"4,940"
+2020,Soda Ash,SJ,Soda Ash,"10,534,902"
+2020,Sodium,BH,Borax-Anhydrous,0
+2020,Sodium,BJ,Borax-Decahydrate,"50,534"
+2020,Sodium,BL,Borax-Pentahydrate,"122,502"
+2020,Sodium,BM,Boric Acid,"39,045"
+2020,Sodium,CA,Calcium Chloride,0
+2020,Sodium,PP,Purge Liquor,"74,174"
+2020,Sodium,SA,Salt,"1,410,615"
+2020,Sodium,SB,Sodium Bi-Carbonate,"445,493"
+2020,Sodium,SN,Anhydrous Sodium Sulfate,"226,321"
+2020,Sodium,SP,Sodium Sesquicarbonate,"331,241"
+2020,Sodium,SR,Caustic,0
+2020,Sodium,SU,Sulfide,"20,158"
+2020,Sodium,TB,Sodium Bisulfite,0
+2020,Sodium,TD,Sodium Decahydrate,0
+2020,Sodium,TJ,Trona Ore,"239,601"
+2020,Zinc,ZA,Zinc Concentrate,"36,823"
+2021,Clay,CG,Clay,"77,741"
+2021,Coal,EE,Coal,"308,108,763"
+2021,Coal,EI,Coal-Subbituminous-Raw,SENSITIVE
+2021,Coal,ES,Coal Fines,10
+2021,Coal,EW,Coal Waste (Sub-Econ),0
+2021,Coal,LT,Leonardite,"16,238"
+2021,Cobalt,CL,Cobalt Concentrate,0
+2021,Copper,CH,Copper Concentrate,"23,146"
+2021,Copper,CU,Copper,0
+2021,Gilsonite,GF,Gilsonite,"15,196"
+2021,Gold,AP,Gold Placer,0
+2021,Gold,AV,Gold Ore,0
+2021,Gypsum,GH,Gypsum,"520,300"
+2021,Humate,HU,Humate,"25,616"
+2021,Lead,PC,Lead Concentrate,"186,149"
+2021,Limestone,PG,Limestone,0
+2021,Mine Water,TW,Mine Water,"90,970"
+2021,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2021,Phosphate,FB,Ferro Phosphorous Slag,0
+2021,Phosphate,PK,Phosphate Raw Ore,"6,196,374"
+2021,Phosphate,PN,Potassium Sulphate-Standard,"13,067"
+2021,Potassium,JD,Muriate Of Potash-Standard,"65,212"
+2021,Potassium,JL,Muriate Of Potash-Granular,"57,036"
+2021,Potassium,JP,Potash,"52,261"
+2021,Potassium,LG,Langbeinite,"946,662"
+2021,Potassium,MG,Magnesium Chloride Brine,"215,269"
+2021,Potassium,MS,Manure Salts,0
+2021,Quartz,QB,Quartz Crystal,"2,560"
+2021,Sand & Gravel,BS,Borrow Sand & Gravel,"52,740"
+2021,Sand & Gravel,SF,Sand/Gravel,"1,167,893"
+2021,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"4,180"
+2021,Soda Ash,SJ,Soda Ash,"11,777,582"
+2021,Sodium,BH,Borax-Anhydrous,0
+2021,Sodium,BJ,Borax-Decahydrate,"47,038"
+2021,Sodium,BL,Borax-Pentahydrate,"112,859"
+2021,Sodium,BM,Boric Acid,"33,985"
+2021,Sodium,CA,Calcium Chloride,0
+2021,Sodium,PP,Purge Liquor,"93,499"
+2021,Sodium,SA,Salt,"1,033,126"
+2021,Sodium,SB,Sodium Bi-Carbonate,"499,777"
+2021,Sodium,SN,Anhydrous Sodium Sulfate,"200,296"
+2021,Sodium,SP,Sodium Sesquicarbonate,"345,056"
+2021,Sodium,SR,Caustic,0
+2021,Sodium,SU,Sulfide,"17,492"
+2021,Sodium,TB,Sodium Bisulfite,0
+2021,Sodium,TD,Sodium Decahydrate,0
+2021,Sodium,TJ,Trona Ore,"284,672"
+2021,Zinc,ZA,Zinc Concentrate,"35,150"
+2022,Clay,CG,Clay,"43,430"
+2022,Coal,EE,Coal,"315,109,277"
+2022,Coal,EW,Coal Waste (Sub-Econ),0
+2022,Coal,LT,Leonardite,"18,024"
+2022,Cobalt,CL,Cobalt Concentrate,0
+2022,Copper,CH,Copper Concentrate,"21,815"
+2022,Copper,CU,Copper,0
+2022,Gilsonite,GF,Gilsonite,"23,455"
+2022,Gold,AP,Gold Placer,0
+2022,Gold,AV,Gold Ore,0
+2022,Gypsum,GH,Gypsum,"363,243"
+2022,Humate,HU,Humate,"4,863"
+2022,Lead,PC,Lead Concentrate,"187,796"
+2022,Limestone,PG,Limestone,0
+2022,Mine Water,TW,Mine Water,"16,873"
+2022,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2022,Phosphate,FB,Ferro Phosphorous Slag,0
+2022,Phosphate,PK,Phosphate Raw Ore,"4,855,099"
+2022,Phosphate,PN,Potassium Sulphate-Standard,"10,263"
+2022,Potassium,JD,Muriate Of Potash-Standard,"68,345"
+2022,Potassium,JL,Muriate Of Potash-Granular,"48,126"
+2022,Potassium,JP,Potash,"52,398"
+2022,Potassium,LG,Langbeinite,"898,952"
+2022,Potassium,MG,Magnesium Chloride Brine,"172,932"
+2022,Potassium,MS,Manure Salts,0
+2022,Quartz,QB,Quartz Crystal,800
+2022,Sand & Gravel,SF,Sand/Gravel,"1,425,450"
+2022,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"3,288"
+2022,Soda Ash,SJ,Soda Ash,"11,893,686"
+2022,Sodium,BH,Borax-Anhydrous,0
+2022,Sodium,BJ,Borax-Decahydrate,"41,920"
+2022,Sodium,BL,Borax-Pentahydrate,"109,848"
+2022,Sodium,BM,Boric Acid,"31,348"
+2022,Sodium,CA,Calcium Chloride,0
+2022,Sodium,PP,Purge Liquor,"104,263"
+2022,Sodium,SA,Salt,"1,003,954"
+2022,Sodium,SB,Sodium Bi-Carbonate,"478,335"
+2022,Sodium,SN,Anhydrous Sodium Sulfate,"193,547"
+2022,Sodium,SP,Sodium Sesquicarbonate,"380,734"
+2022,Sodium,SR,Caustic,0
+2022,Sodium,SU,Sulfide,0
+2022,Sodium,TB,Sodium Bisulfite,0
+2022,Sodium,TD,Sodium Decahydrate,0
+2022,Sodium,TJ,Trona Ore,"296,393"
+2022,Zinc,ZA,Zinc Concentrate,"37,569"
+2023,Clay,CG,Clay,"19,715"
+2023,Coal,EE,Coal,"294,415,736"
+2023,Coal,EW,Coal Waste (Sub-Econ),0
+2023,Coal,LT,Leonardite,"13,024"
+2023,Cobalt,CL,Cobalt Concentrate,0
+2023,Copper,CH,Copper Concentrate,"22,146"
+2023,Copper,CU,Copper,0
+2023,Gilsonite,GF,Gilsonite,"29,053"
+2023,Gold,AP,Gold Placer,0
+2023,Gold,AV,Gold Ore,0
+2023,Gypsum,GH,Gypsum,"513,318"
+2023,Humate,HU,Humate,"10,421"
+2023,Lead,PC,Lead Concentrate,"166,033"
+2023,Mine Water,TW,Mine Water,"19,723"
+2023,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2023,Phosphate,FB,Ferro Phosphorous Slag,0
+2023,Phosphate,PK,Phosphate Raw Ore,"5,183,613"
+2023,Phosphate,PN,Potassium Sulphate-Standard,"7,405"
+2023,Potassium,JD,Muriate Of Potash-Standard,"58,291"
+2023,Potassium,JL,Muriate Of Potash-Granular,"36,562"
+2023,Potassium,JP,Potash,"39,087"
+2023,Potassium,LG,Langbeinite,"648,724"
+2023,Potassium,MG,Magnesium Chloride Brine,"166,214"
+2023,Potassium,MS,Manure Salts,0
+2023,Quartz,QB,Quartz Crystal,"1,811"
+2023,Sand & Gravel,SF,Sand/Gravel,"1,835,834"
+2023,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"2,004"
+2023,Soda Ash,SJ,Soda Ash,"11,616,655"
+2023,Sodium,BH,Borax-Anhydrous,0
+2023,Sodium,BJ,Borax-Decahydrate,"25,682"
+2023,Sodium,BL,Borax-Pentahydrate,"121,045"
+2023,Sodium,BM,Boric Acid,"34,037"
+2023,Sodium,CA,Calcium Chloride,0
+2023,Sodium,PP,Purge Liquor,"76,183"
+2023,Sodium,SA,Salt,"1,011,570"
+2023,Sodium,SB,Sodium Bi-Carbonate,"415,092"
+2023,Sodium,SN,Anhydrous Sodium Sulfate,"173,683"
+2023,Sodium,SP,Sodium Sesquicarbonate,"407,136"
+2023,Sodium,SR,Caustic,0
+2023,Sodium,SU,Sulfide,0
+2023,Sodium,TB,Sodium Bisulfite,0
+2023,Sodium,TD,Sodium Decahydrate,0
+2023,Sodium,TJ,Trona Ore,"224,503"
+2023,Zinc,ZA,Zinc Concentrate,"47,131"
+2024,Clay,CG,Clay,"9,938"
+2024,Coal,EE,Coal,"248,078,496"
+2024,Coal,EW,Coal Waste (Sub-Econ),0
+2024,Coal,LT,Leonardite,"12,905"
+2024,Cobalt,CL,Cobalt Concentrate,0
+2024,Copper,CH,Copper Concentrate,"16,654"
+2024,Copper,CU,Copper,0
+2024,Gilsonite,GF,Gilsonite,"26,003"
+2024,Gold,AP,Gold Placer,SENSITIVE
+2024,Gypsum,GH,Gypsum,"524,904"
+2024,Humate,HU,Humate,"13,959"
+2024,Lead,PC,Lead Concentrate,"178,559"
+2024,Mine Water,TW,Mine Water,"30,413"
+2024,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2024,Phosphate,FB,Ferro Phosphorous Slag,0
+2024,Phosphate,PK,Phosphate Raw Ore,"5,152,165"
+2024,Phosphate,PN,Potassium Sulphate-Standard,"7,211"
+2024,Potassium,JD,Muriate Of Potash-Standard,"90,567"
+2024,Potassium,JL,Muriate Of Potash-Granular,"47,653"
+2024,Potassium,JP,Potash,"49,306"
+2024,Potassium,LG,Langbeinite,"826,430"
+2024,Potassium,MG,Magnesium Chloride Brine,"156,382"
+2024,Potassium,MS,Manure Salts,0
+2024,Quartz,QB,Quartz Crystal,867
+2024,Sand & Gravel,SF,Sand/Gravel,"434,150"
+2024,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,"1,680"
+2024,Soda Ash,SJ,Soda Ash,"12,276,099"
+2024,Sodium,BH,Borax-Anhydrous,0
+2024,Sodium,BJ,Borax-Decahydrate,"22,482"
+2024,Sodium,BL,Borax-Pentahydrate,"116,256"
+2024,Sodium,BM,Boric Acid,"31,615"
+2024,Sodium,CA,Calcium Chloride,0
+2024,Sodium,PP,Purge Liquor,"54,315"
+2024,Sodium,SA,Salt,"1,024,224"
+2024,Sodium,SB,Sodium Bi-Carbonate,"416,367"
+2024,Sodium,SN,Anhydrous Sodium Sulfate,"179,395"
+2024,Sodium,SP,Sodium Sesquicarbonate,"423,331"
+2024,Sodium,SR,Caustic,0
+2024,Sodium,SU,Sulfide,0
+2024,Sodium,TB,Sodium Bisulfite,0
+2024,Sodium,TD,Sodium Decahydrate,0
+2024,Sodium,TJ,Trona Ore,"245,450"
+2024,Zinc,ZA,Zinc Concentrate,"41,779"
+2025,Clay,CG,Clay,0
+2025,Coal,EE,Coal,"262,217,346"
+2025,Coal,EW,Coal Waste (Sub-Econ),0
+2025,Coal,LT,Leonardite,"15,174"
+2025,Cobalt,CL,Cobalt Concentrate,0
+2025,Copper,CH,Copper Concentrate,"21,207"
+2025,Copper,CU,Copper,0
+2025,Gilsonite,GF,Gilsonite,"17,452"
+2025,Gold,AP,Gold Placer,SENSITIVE
+2025,Gypsum,GH,Gypsum,"531,501"
+2025,Humate,HU,Humate,"9,083"
+2025,Lead,PC,Lead Concentrate,"148,155"
+2025,Mine Water,TW,Mine Water,"16,606"
+2025,Molybdenum Concentrate,MB,Molybdenum Concentrate,0
+2025,Phosphate,FB,Ferro Phosphorous Slag,0
+2025,Phosphate,PK,Phosphate Raw Ore,"5,764,589"
+2025,Phosphate,PN,Potassium Sulphate-Standard,0
+2025,Potassium,JD,Muriate Of Potash-Standard,"65,642"
+2025,Potassium,JL,Muriate Of Potash-Granular,"71,100"
+2025,Potassium,JP,Potash,"42,894"
+2025,Potassium,LG,Langbeinite,"669,892"
+2025,Potassium,MG,Magnesium Chloride Brine,"185,217"
+2025,Potassium,MS,Manure Salts,0
+2025,Quartz,QB,Quartz Crystal,"10,407"
+2025,Sand & Gravel,SF,Sand/Gravel,"154,696"
+2025,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,780
+2025,Soda Ash,SJ,Soda Ash,"11,948,571"
+2025,Sodium,BH,Borax-Anhydrous,0
+2025,Sodium,BJ,Borax-Decahydrate,0
+2025,Sodium,BL,Borax-Pentahydrate,"96,840"
+2025,Sodium,BM,Boric Acid,"32,643"
+2025,Sodium,CA,Calcium Chloride,0
+2025,Sodium,PP,Purge Liquor,"55,554"
+2025,Sodium,SA,Salt,"1,079,935"
+2025,Sodium,SB,Sodium Bi-Carbonate,"457,224"
+2025,Sodium,SN,Anhydrous Sodium Sulfate,"98,046"
+2025,Sodium,SP,Sodium Sesquicarbonate,"438,020"
+2025,Sodium,SR,Caustic,0
+2025,Sodium,SU,Sulfide,0
+2025,Sodium,TB,Sodium Bisulfite,0
+2025,Sodium,TD,Sodium Decahydrate,0
+2025,Sodium,TJ,Trona Ore,"273,361"
+2025,Zinc,ZA,Zinc Concentrate,"32,344"
+2026,Clay,CG,Clay,0
+2026,Coal,EE,Coal,"120,245,625"
+2026,Coal,EW,Coal Waste (Sub-Econ),0
+2026,Coal,LT,Leonardite,"10,359"
+2026,Cobalt,CL,Cobalt Concentrate,0
+2026,Copper,CH,Copper Concentrate,"8,296"
+2026,Copper,CU,Copper,0
+2026,Gilsonite,GF,Gilsonite,"7,139"
+2026,Gypsum,GH,Gypsum,"175,802"
+2026,Humate,HU,Humate,0
+2026,Lead,PC,Lead Concentrate,"68,265"
+2026,Mine Water,TW,Mine Water,0
+2026,Phosphate,FB,Ferro Phosphorous Slag,0
+2026,Phosphate,PK,Phosphate Raw Ore,"2,324,399"
+2026,Phosphate,PN,Potassium Sulphate-Standard,0
+2026,Potassium,JD,Muriate Of Potash-Standard,"29,234"
+2026,Potassium,JL,Muriate Of Potash-Granular,"43,512"
+2026,Potassium,JP,Potash,"42,519"
+2026,Potassium,LG,Langbeinite,"333,243"
+2026,Potassium,MG,Magnesium Chloride Brine,"54,803"
+2026,Potassium,MS,Manure Salts,0
+2026,Quartz,QB,Quartz Crystal,"1,857"
+2026,Sand & Gravel,SF,Sand/Gravel,"15,000"
+2026,Sand & Gravel,SG,Sand/Gravel-Cubic Yards,156
+2026,Soda Ash,SJ,Soda Ash,"4,473,929"
+2026,Sodium,BH,Borax-Anhydrous,0
+2026,Sodium,BJ,Borax-Decahydrate,0
+2026,Sodium,BL,Borax-Pentahydrate,"31,682"
+2026,Sodium,BM,Boric Acid,"4,782"
+2026,Sodium,CA,Calcium Chloride,0
+2026,Sodium,PP,Purge Liquor,"15,453"
+2026,Sodium,SA,Salt,"415,278"
+2026,Sodium,SB,Sodium Bi-Carbonate,"183,232"
+2026,Sodium,SN,Anhydrous Sodium Sulfate,"45,564"
+2026,Sodium,SP,Sodium Sesquicarbonate,"116,919"
+2026,Sodium,SR,Caustic,0
+2026,Sodium,SU,Sulfide,0
+2026,Sodium,TB,Sodium Bisulfite,0
+2026,Sodium,TD,Sodium Decahydrate,0
+2026,Sodium,TJ,Trona Ore,"125,596"
+2026,Zinc,ZA,Zinc Concentrate,"18,006"
