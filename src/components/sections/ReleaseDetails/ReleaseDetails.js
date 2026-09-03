@@ -37,7 +37,7 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          August 18, 2026 changes:
+          september 8, 2026 changes:
           </Typography>
         <List className={classes.changeList}>
         <ListItem>
@@ -63,15 +63,6 @@ export default function ReleaseDetails() {
               primary={
                 <>
                   Added <Link href="/downloads/production-by-disposition/">monthly production disposition data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/disbursements-by-month/">monthly disbursements data</Link>
                 </>
               }
             />
