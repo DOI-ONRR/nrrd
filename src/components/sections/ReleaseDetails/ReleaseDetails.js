@@ -37,32 +37,14 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          September 8, 2026 changes:
+          September 15, 2026 changes:
           </Typography>
         <List className={classes.changeList}>
         <ListItem>
             <ListItemText
               primary={
                 <>
-                  Added <Link href="/downloads/revenue/">monthly revenue data</Link>
-                </>
-              }
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/production-by-month/">monthly production data</Link>
-                </>
-              }
-            />
-          </ListItem>
-        <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/production-by-disposition/">monthly production disposition data</Link>
+                  Added <Link href="/downloads/monthly-disbursements/">monthly disbursements data</Link>
                 </>
               }
             />
