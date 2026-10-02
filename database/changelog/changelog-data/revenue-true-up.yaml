@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-true-up-2026
+      id: revenue-true-up-2026-b
       author: Lindsay Goldstein
       changes:
       - sql:
