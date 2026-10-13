@@ -37,19 +37,28 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          September 15, 2026 changes:
+          October 13, 2026 changes:
           </Typography>
-        <List className={classes.changeList}>
-        <ListItem>
-            <ListItemText
-              primary={
-                <>
-                  Added <Link href="/downloads/disbursements-by-month/">monthly disbursements data</Link>
-                </>
-              }
-            />
-          </ListItem>
-        </List>
+  <List className={classes.changeList}>
+  <ListItem>
+    <ListItemText
+      primary={
+        <>
+          Added <Link href="/downloads/production-by-month/">monthly production data</Link>
+        </>
+      }
+    />
+  </ListItem>
+  <ListItem>
+    <ListItemText
+      primary={
+        <>
+          Added <Link href="/downloads/production-by-disposition/">monthly production by disposition data</Link>
+        </>
+      }
+    />
+  </ListItem>
+</List>
         <Typography variant="inherit">
           Review our{' '}
           <Link href="https://github.com/ONRR/nrrd/releases">full release details <OpenInNewIcon fontSize="inherit" style={{ verticalAlign: 'middle' }} /> </Link>.
