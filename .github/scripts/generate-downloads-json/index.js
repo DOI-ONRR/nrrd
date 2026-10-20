@@ -12,7 +12,10 @@ const db = new Pool({
   host: host,
   database: database,
   password: password,
-  port: port
+  port: port,
+  // The server rejects unencrypted connections. Its certificate is issued for the
+  // RDS endpoint, not the tunnel's localhost, so it can't be verified here.
+  ssl: { rejectUnauthorized: false }
 
 })
 const metaJson = {}
@@ -46,7 +49,7 @@ const metaData = (dataSet, extension, period) => {
 	    metaJson[dataSet + '.' + extension].size = csvStats.size
     }
   ).catch(err => {
-    console.debug(err); process.exit()
+    console.error(err); process.exit(1)
   })
   return r
 }
