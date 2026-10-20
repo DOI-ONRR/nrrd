@@ -49,5 +49,5 @@ databaseChangeLog:
           dbms: 'postgresql'
           sql: |
             CALL load_disbursement_monthly(2026);
-            CALL summarize_fy_disbursements(2025);
+            CALL summarize_fy_disbursements(2026);
       
