@@ -21,7 +21,7 @@ import utils, { formatDate } from '../../../js/utils'
 const TOTAL_DISBURSEMENTS_QUERY = gql`
   query TotalYearlyDisbursements {
 
-    total_yearly_fiscal_disbursement(order_by: [{year: asc}]) {
+    total_yearly_fiscal_disbursement(order_by: [{year: asc}, {fiscal_month: asc}]) {
       period
       sum
       source: land_type
@@ -142,12 +142,8 @@ const TotalDisbursements = props => {
   if (error) return `Error! ${ error.message }`
   if (data) {
     // console.log('TotalDisbursements data: ', data)
-    maxFiscalYear = data.total_monthly_fiscal_disbursement.reduce((prev, current) => {
-      return (prev.year > current.year) ? prev.year : current.year
-    })
-    maxCalendarYear = data.total_monthly_calendar_disbursement.reduce((prev, current) => {
-      return (prev.year > current.year) ? prev.year : current.year
-    })
+    maxFiscalYear = Math.max(...data.total_monthly_fiscal_disbursement.map(item => item.year))
+    maxCalendarYear = Math.max(...data.total_monthly_calendar_disbursement.map(item => item.year))
 
     // Month range and month range text
     currentMonthNum = data.total_yearly_fiscal_disbursement[data.total_yearly_fiscal_disbursement.length - 1].currentMonth
