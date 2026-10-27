@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: download-revenue-views
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/views/download_monthly_revenue.sql
+      - sqlFile:
+          path: src/views/download_fiscal_year_revenue.sql
+      - sqlFile:
+          path: src/views/download_calendar_year_revenue.sql
+
+  - changeSet:
+      id: download-disbursement-views
+      author: Jeff Schwartz
+      runOnChange: true
+      changes:
+      - sqlFile:
+          path: src/views/download_monthly_disbursements.sql
+      - sqlFile:
+          path: src/views/download_fiscal_year_disbursements.sql
