@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: revenue-26-August
+      id: revenue-26-September
       author: Lindsay Goldstein 
       changes: 
       - sql:
@@ -9,7 +9,7 @@ databaseChangeLog:
             TRUNCATE TABLE monthly_revenue_elt
       - loadData:
           tableName: monthly_revenue_elt
-          file: '../static/csv/revenue/August 2026 Revenue for Portal.csv'
+          file: '../static/csv/revenue/September 2026 Revenue for Portal.csv'
           quotchar: '""'
           columns:
           - column:
