@@ -69,7 +69,7 @@ jobs:
       - name: Install connect-to-service CF plugin
         shell: bash
         run: |
-          cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/v2.0.0/cf-service-connect_darwin_arm64
+          cf install-plugin -f https://github.com/cloud-gov/cf-service-connect/releases/download/v2.0.2/cf-service-connect_linux_amd64
       
       - name: Set up Node.js
         uses: actions/setup-node@v4
