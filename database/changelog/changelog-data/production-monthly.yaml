@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: production-monthly-26-July
+      id: production-monthly-26-august
       author: Lindsay Goldstein
       changes: 
       - sql:
