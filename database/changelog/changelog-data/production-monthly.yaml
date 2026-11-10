@@ -1,6 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: production-monthly-26-August
+      author: Lindsay Goldstein
       changes: 
       - sql:
           dbms: 'postgresql'
