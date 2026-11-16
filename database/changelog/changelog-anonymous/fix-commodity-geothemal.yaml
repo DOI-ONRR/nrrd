@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: fix-commodity-geothemal
+      author: Jeff Schwartz
+      changes:
+      - sql:
+          dbms: 'postgresql'
+          sql: |
+            -- Disbursements loaded with the misspelled commodity "Geothemal" (Oct 2015, Nye County, NV)
+            -- belong to the "Geothermal" commodity. Look both up by name since ids differ by database.
+            CREATE TEMP TABLE geothemal_fix ON COMMIT DROP AS
+            SELECT bad.commodity_id AS bad_id, good.commodity_id AS good_id
+            FROM commodity bad, commodity good
+            WHERE bad.commodity = 'Geothemal'
+              AND bad.product = 'Geothemal'
+              AND good.commodity = 'Geothermal'
+              AND good.product = 'Geothermal'
+              AND good.mineral_lease_type = '';
+
+            -- Add amounts into Geothermal rows that already have the same key
+            UPDATE disbursement d
+            SET disbursement = d.disbursement + g.disbursement,
+              raw_disbursement = (d.disbursement + g.disbursement)::text
+            FROM disbursement g, geothemal_fix f
+            WHERE g.commodity_id = f.bad_id
+              AND d.commodity_id = f.good_id
+              AND d.location_id = g.location_id
+              AND d.period_id = g.period_id
+              AND d.fund_id = g.fund_id;
+
+            DELETE FROM disbursement g
+            USING disbursement d, geothemal_fix f
+            WHERE g.commodity_id = f.bad_id
+              AND d.commodity_id = f.good_id
+              AND d.location_id = g.location_id
+              AND d.period_id = g.period_id
+              AND d.fund_id = g.fund_id;
+
+            -- Move the rest
+            UPDATE disbursement d
+            SET commodity_id = f.good_id
+            FROM geothemal_fix f
+            WHERE d.commodity_id = f.bad_id;
+
+            -- Drop the misspelled commodity if nothing else uses it
+            DELETE FROM commodity c
+            USING geothemal_fix f
+            WHERE c.commodity_id = f.bad_id
+              AND NOT EXISTS (SELECT 1 FROM disbursement x WHERE x.commodity_id = c.commodity_id)
+              AND NOT EXISTS (SELECT 1 FROM revenue x WHERE x.commodity_id = c.commodity_id)
+              AND NOT EXISTS (SELECT 1 FROM production x WHERE x.commodity_id = c.commodity_id)
+              AND NOT EXISTS (SELECT 1 FROM commodity_alias x WHERE x.commodity_id = c.commodity_id);
