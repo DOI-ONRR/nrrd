@@ -37,41 +37,55 @@ export default function ReleaseDetails() {
           Latest release details
         </Typography>
         <Typography variant="inherit" className={classes.changes}>
-          October 28, 2026 changes:
+         November 16, 2026 changes:
           </Typography>
-  <List className={classes.changeList}>
-  <ListItem>
-    <ListItemText
+  
+
+<List className={classes.changeList}>
+  <ListItemText
       primary={
         <>
           Added <Link href="/downloads/disbursements-by-month/">monthly disbursements data</Link>
         </>
       }
     />
-  </ListItem>
-  <ListItem>
-    <ListItemText
-      primary={
-        <>
-          Added <Link href="/downloads/disbursements/">fiscal year disbursements data</Link>
-        </>
-      }
-    />
-  </ListItem>
-  <ListItem>
-    <ListItemText
+
+  <ListItemText
       primary={
         <>
           Added <Link href="/downloads/revenue/">fiscal year and monthly revenue data</Link>
         </>
       }
     />
-  </ListItem>
+
+  <ListItemText
+      primary={
+        <>
+          Added <Link href="/downloads/production-by-month/">monthly production data</Link>
+        </>
+      }
+    />
+
+  <ListItemText
+      primary={
+        <>
+          Added <Link href="/downloads/production-by-disposition/">monthly production disposition data</Link>
+        </>
+      }
+    />
 </List>
-        <Typography variant="inherit">
-          Review our{' '}
-          <Link href="https://github.com/ONRR/nrrd/releases">full release details <OpenInNewIcon fontSize="inherit" style={{ verticalAlign: 'middle' }} /> </Link>.
-        </Typography>
+
+<Typography variant="inherit">
+  Review our{' '}
+  <Link href="https://github.com/ONRR/nrrd/releases">
+    full release details{' '}
+    <OpenInNewIcon
+      fontSize="inherit"
+      style={{ verticalAlign: 'middle' }}
+    />
+  </Link>.
+</Typography>
+
       </Box>
     </>
   );
